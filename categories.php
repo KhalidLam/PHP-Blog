@@ -1,3 +1,16 @@
+<?php require "db.php" ?>
+<?php 
+
+function random_color_part() {
+    return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+}
+
+function random_color() {
+    return random_color_part() . random_color_part() . random_color_part();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,88 +53,20 @@
             <div class="container">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
 
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-primary py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Android Development</h2>
-                            </div>
+                    <?php
+                        $data = $conn->query("SELECT * FROM category")->fetchAll();
+                        foreach ($data as $row) :   
+                    ?>
+
+                        <div class="col mb-4 d-flex align-items-stretch">
+                            <a href="articleOfCategory.php?catID=<?= $row['category_id'] ?>" class="card text-white py-3 btn w-100" style="background-color: <?php echo "#".random_color() ?>" >
+                                <div class="card-body d-flex align-items-center justify-content-center">
+                                    <h2 class="card-title"><?= $row['category_name'] ?></h2>
+                                </div>
+                            </a>
                         </div>
-                        
-                    </div>
 
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-secondary py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Data Science</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-success py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Full Stack Web Development</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-danger py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">iOS Development</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-info py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Java BackEnd Development</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-dark py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">User Experience Design</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-success py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Principles of Success</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-primary py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Ruby on Rails</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col mb-4 d-flex align-items-stretch">
-                        <div class="card text-white bg-secondary py-3 btn w-100">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <h2 class="card-title">Career Readliness</h2>
-                            </div>
-                        </div>
-                        
-                    </div>
-
+                    <?php endforeach ?>
 
                 </div>
             </div>

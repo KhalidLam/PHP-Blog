@@ -10,6 +10,9 @@
     <link rel="icon" href="img/logo/flogo.png" sizes="32x32" type="image/png">
     <title>Add Article</title>
 
+    <!-- JS TextEditor -->
+    <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
     <!-- Bootstrap, FontAwesome, Custom Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
@@ -29,7 +32,7 @@
                 <a class="p-2 px-5 text-muted" href="index.php">Home</a>
                 <a class="p-2 px-5 text-muted" href="categories.php">Category</a>
                 <a class="p-2 px-5 text-muted" href="article.php">Article</a>
-                <a class="p-2 px-5 text-muted" href="single_article.php">Single Article</a>
+                <!-- <a class="p-2 px-5 text-muted" href="single_article.php">Single Article</a> -->
                 <a class="p-2 px-5 text-muted" href="autheur.php">Autheur</a>
             </nav>
 
@@ -57,6 +60,7 @@
 
                     <div class="form-group">
                         <label for="arContent">Content</label>
+
                         <textarea class="form-control" name="arContent" id="arContent" rows="3"></textarea>
                     </div>
 
@@ -72,22 +76,37 @@
                         <label for="arCategory">Category</label>
                         <select class="custom-select" name="arCategory" id="arCategory">
                             <option disabled>-- Select Category --</option>
-                            <option value="1">Programming</option>
-                            <option value="2">Data Science</option>
-                            <option value="3">Blockchain</option>
-                            <option value="4">Android Dev</option>
-                            <option value="5">Cybersecurity</option>
+
+                            <?php
+                                $data = $conn->query("SELECT category_id, category_name FROM category")->fetchAll();
+                                foreach ($data as $row) {
+                            ?>
+                                <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
+                            <?php  
+                                }  
+                            ?>
+
                         </select>
                     </div>
+
 
                     <div class="form-group">
                         <label for="arAutheur">Autheur</label>
                         <select class="custom-select" name="arAutheur" id="arAutheur">
                             <option disabled>-- Select Autheur --</option>
-                            <option value="1">Autheur 1</option>
-                            <option value="2">Autheur 2</option>
-                            <option value="3">Autheur 3</option>
-                            <option value="4">Autheur 4</option>
+
+                            <?php
+                                $data = $conn->query("SELECT autheur_id, autheur_fullname FROM autheur")->fetchAll();
+                                foreach ($data as $row) {
+                            ?>
+
+                                <option value="<?= $row['autheur_id'] ?>"><?= $row['autheur_fullname'] ?></option>
+                            
+                            <?php  
+                                }  
+                            ?>
+
+
                         </select>
                     </div>
                     <div class="text-center">
@@ -116,6 +135,11 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Text Editor Script -->
+    <script>
+            CKEDITOR.replace( 'arContent' );
+    </script>
 
 </body>
 

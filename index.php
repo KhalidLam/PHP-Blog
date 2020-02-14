@@ -1,16 +1,16 @@
 <?php require "db.php" ?>
 <?php 
 
-function truncate($text, $chars = 25) {
-    if (strlen($text) <= $chars) {
-        return $text;
-    }
-    $text = $text." ";
-    $text = substr($text,0,$chars);
-    $text = substr($text,0,strrpos($text,' '));
-    $text = $text."...";
-    return $text;
-}
+// function truncate($text, $chars = 25) {
+//     if (strlen($text) <= $chars) {
+//         return $text;
+//     }
+//     $text = $text." ";
+//     $text = substr($text,0,$chars);
+//     $text = substr($text,0,strrpos($text,' '));
+//     $text = $text."...";
+//     return $text;
+// }
 
 ?>
 
@@ -31,19 +31,6 @@ function truncate($text, $chars = 25) {
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-
-    <style>
-        .card-img-top {
-            height: 215px; 
-            width: 100%; 
-            display: block;
-        }
-
-        .stretch{
-            display: flex !important;
-            align-items: stretch !important;
-        }
-    </style>
 
 </head>
 
@@ -125,8 +112,12 @@ function truncate($text, $chars = 25) {
                             <div class="card shadow-sm">
                                 <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $row['article_title'] ?></h5>
-                                    <p class="card-text"><?= truncate($row['article_content'], 80) ?></p>
+                                    <h5 class="card-title">
+                                        <a href="single_article.php?id=<?= $row['article_id']?>" class="text-dark"> <?= $row['article_title'] ?> </a>
+                                    </h5>
+                                    
+                                    <!-- <p class="card-text"> // truncate($row['article_content'], 80)</p> -->
+                                    
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>

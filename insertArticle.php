@@ -5,19 +5,6 @@ if ($conn) {
     if (isset($_POST["submit"])) {
 
         // Upload Image
-        // $fileName = $_FILES['arImage']['name'];
-        // $fileTmpName = $_FILES['arImage']['tmp_name'];
-        // $fileError = $_FILES['arImage']['error'];
-       
-        // if($fileError === 0){
-        //     $fileDestination = 'img/article/'.$fileName;
-        //     move_uploaded_file($fileTmpName, $fileDestination);
-        //     echo "Image Upload Successful";
-        // }else {
-        //     echo "Image Upload Error";
-        // }
-
-        // Upload Image
         uploadImage("arImage", "img/article/");
 
         // GET DATA TO INSERT INTO DB 
@@ -36,7 +23,7 @@ if ($conn) {
         insertToDB($conn, $tableName, $data);
 
         // Go to show.php 
-        // header("refresh:1; url=index.php");
+        header("refresh:1; url=index.php");
     }
 
 }else {

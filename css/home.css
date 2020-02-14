@@ -135,3 +135,14 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 3.5rem;
   }
 }
+
+.card-img-top {
+  height: 215px; 
+  width: 100%; 
+  display: block;
+}
+
+.stretch{
+  display: flex !important;
+  align-items: stretch !important;
+}
