@@ -1,24 +1,11 @@
-<?php require "db.php" ?>
-<?php include "ass"?>
+<?php include "assest/head.php"; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/logo/flogo.png" sizes="32x32" type="image/png">
-    <title>Home</title>
-
-    <!-- Bootstrap, FontAwesome, Custom Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
     <link href="css/home.css" rel="stylesheet">
-
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-
+    
+    <title>Home</title>
 </head>
 
 <body>
