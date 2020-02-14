@@ -1,0 +1,22 @@
+.post__img {
+    height: 20rem;
+    /* background-image: url('../img/article/post_img_1.jpg'); */
+    background-size: cover;
+    background-position: center;
+}
+
+.post__date {
+    display: block;
+    margin-top: -.5rem;
+    margin-bottom: 1rem;
+    color: #767676;
+}
+
+.profile-thumbnail {
+    width: 150px;
+    height: 150px;
+}
+
+.bg-l {
+    background-color: #e9ecef;
+}
