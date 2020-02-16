@@ -13,6 +13,7 @@
 
 <body>
 
+    <!-- Header -->
     <header class="blog-header">
 
         <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 bg-white border-bottom shadow-sm">
@@ -31,6 +32,7 @@
 
     </header><!-- Header -->
 
+    <!-- Main -->
     <main role="main">
 
         <div class="jumbotron mb-0">
@@ -72,7 +74,7 @@
 
     </main><!-- /.container -->
 
-
+    <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
 </body>

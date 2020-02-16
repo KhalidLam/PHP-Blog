@@ -47,9 +47,13 @@
                     ?>
 
                         <div class="col mb-4 d-flex align-items-stretch">
-                            <a href="articleOfCategory.php?catID=<?= $row['category_id'] ?>" class="card text-white py-3 btn w-100" style="background-color: <?php echo "#".random_color() ?>" >
+                            <a href="articleOfCategory.php?catID=<?= $row['category_id'] ?>" 
+                                class="card text-white py-3 btn w-100" 
+                                style="background-color: <?= "#".$row['category_color'] ?>" >
                                 <div class="card-body d-flex align-items-center justify-content-center">
-                                    <h2 class="card-title"><?= $row['category_name'] ?></h2>
+                                    <h2 class="card-title">
+                                        <?= $row['category_name'] ?>
+                                    </h2>
                                 </div>
                             </a>
                         </div>
@@ -63,6 +67,7 @@
 
     </main><!-- /.container -->
 
+    <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
 </body>

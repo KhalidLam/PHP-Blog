@@ -79,13 +79,12 @@
 
                     <?php
                         $data = $conn->query("SELECT * FROM article")->fetchAll();
-                        foreach ($data as $row) {
-                            
+                        foreach ($data as $row) :
                     ?>
                         <div class="col mb-4 stretch stretch">
                             <div class="card shadow-sm">
                                 <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column justify-content-between">
                                     <h5 class="card-title">
                                         <a href="single_article.php?id=<?= $row['article_id']?>" class="text-dark"> <?= $row['article_title'] ?> </a>
                                     </h5>
@@ -104,7 +103,7 @@
                         </div>
                     
                     <?php 
-                        }
+                        endforeach;
                     ?>
 
 
@@ -252,6 +251,7 @@
 
     </main><!-- /.container -->
 
+    <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
 </body>

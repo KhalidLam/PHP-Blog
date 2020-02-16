@@ -11,6 +11,7 @@
 
 <body>
 
+   <!-- Header -->
     <header class="blog-header">
         <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 bg-white border-bottom shadow-sm">
             <a href="index.php" class="my-0 mr-md-auto" style="width: 6rem;">
@@ -28,7 +29,7 @@
         </div>
     </header>
 
-
+    <!-- Main -->
     <main role="main" class="bg-l py-5">
 
         <div class="container bg-white">
@@ -101,6 +102,7 @@
 
     </main>
 
+    <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
 </body>

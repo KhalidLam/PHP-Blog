@@ -5,6 +5,7 @@
 </head>
 <body>
 
+    <!-- Header -->
     <header class="blog-header">
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
             <a href="index.html" class="my-0 mr-md-auto" style="width: 6rem;">
@@ -23,7 +24,9 @@
 
     </header>
 
+    <!-- Main -->
 
+    <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
 </body>
