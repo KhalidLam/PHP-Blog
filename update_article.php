@@ -107,11 +107,7 @@
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
                 <form action="" method="POST" enctype="multipart/form-data">
-
-                <?php
-                    // $article = $conn->query("SELECT * FROM article WHERE article_id = $article_id ")->fetch();
-                    
-                ?>
+                
                     <div class="form-group">
                         <label for="arTitle">Title</label>
                         <input type="text" class="form-control" name="arTitle" id="arTitle" value="<?= $article["article_title"] ?>">

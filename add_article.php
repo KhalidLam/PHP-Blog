@@ -54,10 +54,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="UploadImage">Image</label>
+                        <label for="arImage">Image</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="arImage" id="arImage">
-                            <label class="custom-file-label" for="UploadImage">Choose file</label>
+                            <label class="custom-file-label" for="arImage">Choose file</label>
                         </div>
                     </div>
 

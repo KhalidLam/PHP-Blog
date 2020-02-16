@@ -1,13 +1,13 @@
 <?php
-    $catID = $_GET["catID"];
+$catID = $_GET["catID"];
 ?>
 
 <?php include "assest/head.php"; ?>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="css/home.css" rel="stylesheet">
-    <title>Home</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<link href="css/home.css" rel="stylesheet">
+<title>Home</title>
 
 </head>
 
@@ -36,39 +36,40 @@
     <main role="main">
 
         <div class="jumbotron mb-0">
-                <div class="container">
+            <div class="container">
 
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                    <div class="col mb-4 stretch stretch">
+                        <div class="card shadow-sm">
                         <?php
-                        $data = $conn->query("SELECT * FROM article WHERE id_categorie = $catID ")->fetchAll();
-                        foreach ($data as $row) :
+                            $data = $conn->query("SELECT * FROM article WHERE id_categorie = $catID ")->fetchAll();
+                            foreach ($data as $row) :
                         ?>
-                            <div class="col mb-4 stretch stretch">
-                                <div class="card shadow-sm">
-                                    <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <a href="single_article.php?id=<?= $row['article_id'] ?>" class="text-dark"> <?= $row['article_title'] ?> </a>
-                                        </h5>
+                            <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="single_article.php?id=<?= $row['article_id'] ?>" class="text-dark"> <?= $row['article_title'] ?> </a>
+                                </h5>
 
-                                        <!-- <p class="card-text"> // truncate($row['article_content'], 80)</p> -->
+                                <!-- <p class="card-text"> // truncate($row['article_content'], 80)</p> -->
 
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                            </div>
-                                            <small class="text-muted"><?= $row['article_created_time'] ?></small>
-                                        </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="single_article.php?id=<?= $row['article_id'] ?>" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a href="update_article.php?id=<?= $row['article_id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                                     </div>
+                                    <small class="text-muted"><?= $row['article_created_time'] ?></small>
                                 </div>
                             </div>
 
-                        <?php endforeach ?>
-
+                            <?php endforeach ?>
+                        
+                        </div>
                     </div>
+
+                    
                 </div>
+            </div>
         </div>
 
 

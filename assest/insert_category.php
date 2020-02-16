@@ -1,29 +1,27 @@
 <?php require "db.php"; ?>
-<?php
+<?php 
 
 if ($conn) {
-    if (isset($_POST["submit"])) {
+
+    if (isset($_POST["insert"])) {
 
         // Upload Image
-        uploadImage("arImage", "../img/article/");
-
+        uploadImage("catImage", "../img/category/");
+        
         // PREPARE DATA TO INSERT INTO DB 
-        $data = array(
-            "article_title" => $_POST["arTitle"],
-            "article_content" => $_POST["arContent"],
-            "article_image" => $_FILES["arImage"]["name"],
-            "article_created_time" => date('Y-m-d H:i:s'),
-            "id_categorie" => $_POST["arCategory"],
-            "id_autheur" => $_POST["arAutheur"]
+        $data = array (
+            "category_name"  => $_POST["catName"],
+            "category_image" => $_FILES["catImage"]["name"],
+            "category_color" => $_POST["catColor"],
         );
 
-        $tableName = 'article';
+        $tableName = 'category';
 
         // Call insert function 
         insertToDB($conn, $tableName, $data);
 
         // Go to show.php 
-        header("refresh:1; url=../index.php");
+        header("refresh:1; url=../categories.php");
     }
 
 }else {

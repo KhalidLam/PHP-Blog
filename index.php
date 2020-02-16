@@ -93,8 +93,8 @@
                                     
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                            <a href="single_article.php?id=<?= $row['article_id']?>" class="btn btn-sm btn-outline-secondary">View</a>
+                                            <a href="update_article.php?id=<?= $row['article_id']?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                                         </div>
                                         <small class="text-muted"><?= $row['article_created_time'] ?></small>
                                     </div>

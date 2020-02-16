@@ -1,6 +1,6 @@
 <?php include "assest/head.php"; ?>
 
-<!-- JS TextEditor -->
+<!-- Footer CSS -->
 <link href="css/footer.css" rel="stylesheet">
 
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="jumbotron text-center mb-0">
-            <h1 class="display-3 font-weight-normal text-muted">All Articles</h1>
+            <h1 class="display-3 font-weight-normal text-muted">All Categories</h1>
             <!-- <p class="h4 text-black">Home > Add Article</p> -->
         </div>
 
@@ -44,38 +44,32 @@
                 <thead class='thead-dark'>
                     <tr>
                         <th scope='col'>ID</th>
-                        <th scope='col'>Title</th>
-                        <th scope='col'>Content</th>
+                        <th scope='col'>Name</th>
                         <th scope='col'>Image</th>
-                        <th scope='col'>Created Time</th>
-                        <th scope='col'>Category</th>
-                        <th scope='col'>Autheur</th>
+                        <th scope='col'>Color</th>
                         <th scope='col' colspan="2">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
-                    $data = $conn->query("SELECT * FROM article")->fetchAll();
+                    $data = $conn->query("SELECT * FROM category")->fetchAll();
                     foreach ($data as $row) {
                         echo "<tr>";
                     ?>
 
-                        <td><?= $row['article_id'] ?></td>
-                        <td><?= $row['article_title'] ?></td>
-                        <td><?= strip_tags(substr($row['article_content'], 0, 60)) . "..." ?></td>
-                        <td><img src="img/article/<?= $row['article_image'] ?>" style="width: 100px; height: auto;"></td>
-                        <td><?= $row['article_created_time'] ?></td>
-                        <td><?= $row['id_categorie'] ?></td>
-                        <td><?= $row['id_autheur'] ?></td>
+                        <td><?= $row['category_id'] ?></td>
+                        <td><?= $row['category_name'] ?></td>
+                        <td><img src="img/category/<?= $row['category_image'] ?>" style="width: 100px; height: auto;"></td>
+                        <td><?= $row['category_color'] ?></td>
 
                         <td>
-                            <a class="btn btn-success" href="update_article.php?id=<?= $row['article_id'] ?> ">
+                            <a class="btn btn-success" href="update_category.php?id=<?= $row['category_id'] ?> ">
                                 <i class="fa fa-pencil " aria-hidden="true"></i>
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="assest/delete_article.php?id=<?= $row['article_id'] ?> ">
+                            <a class="btn btn-danger" href="assest/delete_category.php?id=<?= $row['category_id'] ?> ">
                                 <i class="fa fa-trash " aria-hidden="true"></i>
                             </a>
                         </td>
@@ -92,7 +86,7 @@
         <div class="row ">
 
             <div class="col-lg-12 text-center mb-3">
-                <a class="btn btn-primary" href="add_article.php">Add Article</a>
+                <a class="btn btn-primary" href="add_category.php">Add Article</a>
             </div>
 
         </div>
