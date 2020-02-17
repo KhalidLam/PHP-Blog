@@ -3,7 +3,7 @@
 <!-- JS TextEditor -->
 <link href="css/footer.css" rel="stylesheet">
 
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <title>Add Article</title>
 </head>
@@ -50,13 +50,13 @@
                         <th scope='col'>Created Time</th>
                         <th scope='col'>Category</th>
                         <th scope='col'>Autheur</th>
-                        <th scope='col' colspan="2">Actions</th>
+                        <th scope='col' colspan="3">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
-                    $data = $conn->query("SELECT * FROM article")->fetchAll();
+                    $data = $conn->query("SELECT * FROM article, autheur, category WHERE id_categorie = category_id AND autheur_id = id_autheur")->fetchAll();
                     foreach ($data as $row) {
                         echo "<tr>";
                     ?>
@@ -66,9 +66,14 @@
                         <td><?= strip_tags(substr($row['article_content'], 0, 60)) . "..." ?></td>
                         <td><img src="img/article/<?= $row['article_image'] ?>" style="width: 100px; height: auto;"></td>
                         <td><?= $row['article_created_time'] ?></td>
-                        <td><?= $row['id_categorie'] ?></td>
-                        <td><?= $row['id_autheur'] ?></td>
+                        <td><?= $row['category_name'] ?></td>
+                        <td><?= $row['autheur_fullname'] ?></td>
 
+                        <td>
+                            <a class="btn btn-info" href="single_article.php?id=<?= $row['article_id'] ?> ">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td>
                         <td>
                             <a class="btn btn-success" href="update_article.php?id=<?= $row['article_id'] ?> ">
                                 <i class="fa fa-pencil " aria-hidden="true"></i>

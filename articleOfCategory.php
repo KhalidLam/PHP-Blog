@@ -30,7 +30,7 @@ $catID = $_GET["catID"];
             <a class="btn btn-outline-primary" href="#">Sign up</a>
         </div>
 
-    </header><!-- Header -->
+    </header>
 
     <!-- Main -->
     <main role="main">
@@ -39,12 +39,12 @@ $catID = $_GET["catID"];
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-                    <div class="col mb-4 stretch stretch">
+                    <?php
+                        $data = $conn->query("SELECT * FROM article WHERE id_categorie = $catID ")->fetchAll();
+                        foreach ($data as $row) :
+                    ?>
+                    <div class="col mb-4 stretch">
                         <div class="card shadow-sm">
-                        <?php
-                            $data = $conn->query("SELECT * FROM article WHERE id_categorie = $catID ")->fetchAll();
-                            foreach ($data as $row) :
-                        ?>
                             <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -60,22 +60,22 @@ $catID = $_GET["catID"];
                                     </div>
                                     <small class="text-muted"><?= $row['article_created_time'] ?></small>
                                 </div>
-                            </div>
-
-                            <?php endforeach ?>
-                        
+                            </div> 
                         </div>
                     </div>
-
+                    
+                    <?php endforeach ?>
                     
                 </div>
             </div>
         </div>
 
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
 </body>
+
+</html>

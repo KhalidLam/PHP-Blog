@@ -4,7 +4,7 @@
     $article_id = $_GET["id"];
 
     // Get article Data to display
-    $article = $conn->query("SELECT * FROM article WHERE article_id = $article_id ")->fetch(); 
+    $article = $conn->query("SELECT * FROM article WHERE article_id = $article_id ")->fetch();
 
     if(isset($_POST["update"])){
 
@@ -63,7 +63,7 @@
     
     <!-- JS TextEditor -->
     <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-    <link href="css/add_article.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 
     <title>Update Article</title>
 </head>
