@@ -56,7 +56,7 @@
 
                 <tbody>
                     <?php
-                    $data = $conn->query("SELECT * FROM article, autheur, category WHERE id_categorie = category_id AND autheur_id = id_autheur")->fetchAll();
+                    $data = $conn->query("SELECT * FROM article, autheur, category WHERE id_categorie = category_id AND autheur_id = id_autheur ORDER BY article_id ASC")->fetchAll();
                     foreach ($data as $row) {
                         echo "<tr>";
                     ?>

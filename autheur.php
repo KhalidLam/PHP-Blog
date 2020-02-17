@@ -1,14 +1,12 @@
 <?php include "assest/head.php"; ?>
 
-<link href="css/category.css" rel="stylesheet">
+<link href="css/footer.css" rel="stylesheet">
 
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <title>All Autheur</title>
 <style>
-    .fa-twitter, 
-    .fa-github, 
-    .fa-linkedin-square {
+    .fa-twitter, .fa-github,.fa-linkedin-square {
         font-size: 2.3rem;
     }
 </style>
@@ -18,7 +16,7 @@
 
     <!-- Header -->
     <header class="blog-header">
-        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
+        <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 bg-white border-bottom shadow-sm">
             <a href="index.html" class="my-0 mr-md-auto" style="width: 6rem;">
                 <img src="img/logo/logo.png" alt="dev culture logo" style="width: 100%;height: auto;">
             </a>

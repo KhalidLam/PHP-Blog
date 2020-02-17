@@ -60,8 +60,12 @@
 
                         <td><?= $row['category_id'] ?></td>
                         <td><?= $row['category_name'] ?></td>
-                        <td><img src="img/category/<?= $row['category_image'] ?>" style="width: 100px; height: auto;"></td>
-                        <td><?= $row['category_color'] ?></td>
+                        <td>
+                            <img src="img/category/<?= $row['category_image'] ?>" style="width: 100px; height: auto;">
+                        </td>
+                        <td class="">
+                            <div style="width: 40px; height: 40px; border-radius: 100% ;background-color: <?= $row['category_color'] ?>"></div>
+                        </td>
 
                         <td>
                             <a class="btn btn-success" href="update_category.php?id=<?= $row['category_id'] ?> ">

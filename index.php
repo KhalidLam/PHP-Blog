@@ -81,8 +81,8 @@
                         $data = $conn->query("SELECT * FROM article")->fetchAll();
                         foreach ($data as $row) :
                     ?>
-                        <div class="col mb-4 stretch stretch">
-                            <div class="card shadow-sm">
+                        <div class="col mb-4 stretch">
+                            <div class="card shadow-sm w-100">
                                 <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <h5 class="card-title">

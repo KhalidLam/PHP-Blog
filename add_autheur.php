@@ -42,7 +42,7 @@
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
                 <form action="assest/insert_autheur.php" method="POST" enctype="multipart/form-data">
-                
+
                     <div class="form-group">
                         <label for="authName">Full Name</label>
                         <input type="text" class="form-control" name="authName" id="authName">
@@ -55,7 +55,7 @@
 
                     <div class="form-group">
                         <label for="authEmail">Email</label>
-                        <input type="text" class="form-control" name="authEmail" id="authEmail">
+                        <input type="email" class="form-control" name="authEmail" id="authEmail">
                     </div>
 
                     <div class="form-group">
