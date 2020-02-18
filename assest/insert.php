@@ -77,7 +77,29 @@ if ($conn) {
                 // Go to show.php 
                 header("refresh:1; url=../autheur.php");
                 break;
+            
+            case "comment":
+                
+                $id = $_POST["id_article"];
 
+                // PREPARE DATA TO INSERT INTO DB 
+                $data = array(
+                    "comment_username" => $_POST["username"],
+                    // "comment_avatar" => $_POST["comment_avatar"],
+                    "comment_content" => $_POST["comment"],
+                    "comment_date" => date('Y-m-d H:i:s'),
+                    "id_article" =>  $_POST["id_article"]
+                );
+
+                $tableName = 'comment';
+
+                // Call insert function 
+                insertToDB($conn, $tableName, $data);
+
+                // Go to show.php 
+                header("refresh:1; url=../single_article.php?id=$id");
+                break;
+            
             default:
                 echo "ERROR";
                 break;

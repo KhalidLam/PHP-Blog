@@ -1,34 +1,28 @@
-<?php 
-    $article_id = $_GET['id'];
-?>
-
 <?php include "assest/head.php"; ?>
 
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<?php
+    $article_id = $_GET['id'];
+    
+    $data = $conn->query("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id ")->fetchAll();
+    
+    $commentQuery = $conn->query("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = $article_id")->fetchAll();
 
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/single_article.css">
-    <title>Single Article</title>    
+
+?>
+
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/single_article.css">
+<title>Single Article</title>
 </head>
 
 <body>
 
-   <!-- Header -->
+    <!-- Header -->
     <header class="blog-header">
-        <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 bg-white border-bottom shadow-sm">
-            <a href="index.php" class="my-0 mr-md-auto" style="width: 6rem;">
-                <img src="img/logo/logo.png" alt="dev culture logo" style="width: 100%;height: auto;">
-            </a>
-
-            <nav class="my-2 my-md-0 mr-md-3">
-                <a class="p-2 px-5 text-muted" href="index.php">Home</a>
-                <a class="p-2 px-5 text-muted" href="categories.php">Category</a>
-                <a class="p-2 px-5 text-muted" href="article.php">Article</a>
-                <a class="p-2 px-5 text-muted" href="autheur.php">Autheur</a>
-            </nav>
-
-            <a class="btn btn-outline-primary" href="#">Sign up</a>
-        </div>
+        <?php include "assest/header.php" ?>
     </header>
 
     <!-- Main -->
@@ -37,13 +31,13 @@
         <div class="container bg-white">
 
             <div class="row">
-                
+
                 <!-- Article Post -->
                 <div class="col-lg-9 p-0 border border-muted">
 
                     <?php
-                        $data = $conn->query("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id ")->fetchAll();                 
-                        foreach ($data as $row) :
+                    // $data = $conn->query("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id ")->fetchAll();
+                    foreach ($data as $row) :
                     ?>
 
                         <!-- Post Image -->
@@ -69,38 +63,83 @@
 
                             <!-- Autheur Info -->
                             <div class="post-footer d-flex my-4 py-3 border border-muted">
-                            
-                                <img class="profile-thumbnail rounded-circle" src="img/avatar/<?= $row['autheur_avatar']?>" alt="test avatar image" 
-                                    style="width: 150px;height: 150px;">
+
+                                <img class="profile-thumbnail rounded-circle" src="img/avatar/<?= $row['autheur_avatar'] ?>" alt="test avatar image" style="width: 150px;height: 150px;">
                                 <div class="d-flex flex-column justify-content-between">
-                                    <h2 class="font-italic"><?= $row['autheur_fullname']?></h2>
-                                    <p class="text-muted mb-1"><?= $row['autheur_desc']?></p>
+                                    <h2 class="font-italic"><?= $row['autheur_fullname'] ?></h2>
+                                    <p class="text-muted mb-1"><?= $row['autheur_desc'] ?></p>
                                     <div class="social_media ">
-                                        <a href="" class="mr-3"><i class="fa fa-twitter"></i><span
-                                                class="px-1"><?= $row['autheur_twitter']?></span></a>
-                                        <a href="" class="mr-3"><i class="fa fa-github"></i><span
-                                                class="px-1"><?= $row['autheur_github']?></span></a>
-                                        <a href="" class="mr-3"><i class="fa fa-linkedin-square"></i><span
-                                                class="px-1"><?= $row['autheur_link']?></span></a>
+                                        <a href="" class="mr-3"><i class="fa fa-twitter"></i><span class="px-1"><?= $row['autheur_twitter'] ?></span></a>
+                                        <a href="" class="mr-3"><i class="fa fa-github"></i><span class="px-1"><?= $row['autheur_github'] ?></span></a>
+                                        <a href="" class="mr-3"><i class="fa fa-linkedin-square"></i><span class="px-1"><?= $row['autheur_link'] ?></span></a>
                                     </div>
                                 </div>
                             </div>
 
                         <?php endforeach; ?>
-                       
 
-                    </div>
+                        </div>
 
                 </div>
 
-                <div class="col p-3 border border-muted">
-                    <!-- Sidebar -->
+                <!-- Sidebar -->
+                <div class="col py-3 border border-primary">
                 </div>
-
 
             </div>
 
-        </div>
+            <div class="row">
+                <div class="container">
+
+                    <div class="post-comments">
+
+                        <form action="assest/insert.php?type=comment&id=<?= $article_id ?>" method="POST">
+                            <div class="form-group mt-3">
+                                <!-- <label for="comment">Your Comment</label> -->
+                                <input type="hidden" name="username" value="<?= rand() ?>">
+                                <input type="hidden" name="id_article" value="<?= $article_id ?>">
+                                <textarea name="comment" class="form-control" rows="3" placeholder="Add your comment..."></textarea>
+                                <button name="submit" type="submit" class="btn btn-primary float-right">Add Comment</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+
+                    </div>
+                    
+                    <div class="comments">
+                        <h2 class="text-center text-muted py-3">Comments</h2>
+                        
+                        <?php
+                        foreach ($commentQuery as $comment) :
+                        ?>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2 text-center">
+                                        <img src="img/avatar/<?= $comment['comment_avatar'] ?>" class="img img-rounded img-fluid w-50" />
+                                        <!-- <p class="text-secondary text-center"></p> -->
+                                        <!-- <i class="text-muted fa fa-heart"></i><span class="px-2">3</span> -->
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p>
+                                            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><?= "User-".$comment['comment_username'] ?></strong></a>
+                                            <span class="float-right px-2 text-muted"><?= $comment['comment_date'] ?></span>
+                                            <!-- <span class="float-right"><i class="text-muted fa fa-heart"></i></span> -->
+                                        </p>
+                                        <div class="clearfix"></div>
+                                        <p class="text-secondary mt-2"><?= $comment['comment_content'] ?></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <?php endforeach; ?>
+                    </div>
+                
+                </div>
+            </div>
 
 
     </main>
