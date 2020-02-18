@@ -79,6 +79,7 @@ if ($conn) {
                 break;
 
             default:
+                echo "ERROR";
                 break;
         }
     }

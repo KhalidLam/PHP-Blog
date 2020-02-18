@@ -6,7 +6,6 @@
     // Get article Data to display
     $autheur = $conn->query("SELECT * FROM autheur WHERE autheur_id = $autheur_id ")->fetch();
 
-   
 ?>
 
 <link href="css/footer.css" rel="stylesheet">
@@ -88,7 +87,7 @@
 
 
                     <div class="text-center">
-                        <button type="submit" name="submit" class="btn btn-info btn-lg w-25">Submit</button>
+                        <button type="submit" name="update" class="btn btn-info btn-lg w-25">Submit</button>
                     </div>
 
 
