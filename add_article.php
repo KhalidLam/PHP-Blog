@@ -41,7 +41,7 @@
 
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
-                <form action="assest/insert_article.php" method="POST" enctype="multipart/form-data">
+                <form action="assest/insert.php?type=article" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="arTitle">Title</label>
                         <input type="text" class="form-control" name="arTitle" id="arTitle">

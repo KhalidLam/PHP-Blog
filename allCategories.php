@@ -73,7 +73,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="assest/delete_category.php?id=<?= $row['category_id'] ?> ">
+                            <a class="btn btn-danger" href="assest/delete.php?type=category&id=<?= $row['category_id'] ?> ">
                                 <i class="fa fa-trash " aria-hidden="true"></i>
                             </a>
                         </td>

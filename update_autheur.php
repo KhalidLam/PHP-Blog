@@ -6,65 +6,7 @@
     // Get article Data to display
     $autheur = $conn->query("SELECT * FROM autheur WHERE autheur_id = $autheur_id ")->fetch();
 
-    // print_r($autheur);
-
-    if (isset($_POST["submit"])){
-
-        // Update DataBase  
-        $fullName = $_POST["authName"];
-        $description = $_POST["authDesc"];
-        $email = $_POST["authEmail"];
-        $twitter = $_POST["authTwitter"];
-        $github = $_POST["authGithub"];
-        $linkedin = $_POST["authLinkedin"];
-        $imageName = $_FILES["authImage"]["name"];
-
-        // Upload Image
-        if($_FILES["authImage"]['error'] === 0){
-            uploadImage("authImage", "img/avatar/");
-        }else { 
-            $imageName = $autheur["autheur_avatar"];  
-        }
-        
-        // UPDATE `autheur` 
-        // SET `autheur_fullname`=[value-2],`autheur_desc`=[value-3],`autheur_email`=[value-4],`autheur_twitter`=[value-5],`autheur_github`=[value-6],`autheur_link`=[value-7],`autheur_avatar`=[value-8]
-        // WHERE 1  
-
-        try {
-
-            $sql = "UPDATE `autheur` 
-                SET `autheur_fullname`= ?, `autheur_desc`= ?,`autheur_email`=?, `autheur_twitter`=?, `autheur_github`= ?, `autheur_link`= ?, `autheur_avatar`= ?
-                WHERE `autheur_id` = $autheur_id";
-            
-            $stmt = $conn->prepare($sql);
-
-            $stmt->execute([$fullName, $description, $email, $twitter, $github, $linkedin, $imageName]);
-            
-            // echo a message to say the UPDATE succeeded
-            echo "Autheur UPDATED successfully";
-
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
-        // Go to show.php 
-        header("refresh:1; url=autheur.php");
-    }
-
-    function uploadImage($name, $dest){
-        // Upload Image
-        $fileName = $_FILES[$name]['name'];
-        $fileTmpName = $_FILES[$name]['tmp_name'];
-        $fileError = $_FILES[$name]['error'];
-
-        if ($fileError === 0) {
-            $fileDestination = $dest . $fileName;
-            move_uploaded_file($fileTmpName, $fileDestination);
-            echo "Image Upload Successful";
-        } else {
-            echo "Image Upload Error";
-        }
-    }
+   
 ?>
 
 <link href="css/footer.css" rel="stylesheet">
@@ -106,7 +48,7 @@
 
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="assest/update.php?type=autheur&id=<?= $autheur_id ?>&img=<?= $autheur["autheur_avatar"] ?>" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="authName">Full Name</label>

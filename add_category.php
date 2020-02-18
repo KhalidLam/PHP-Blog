@@ -53,7 +53,7 @@
 
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
-                <form action="assest/insert_category.php" method="POST" enctype="multipart/form-data">
+                <form action="assest/insert.php?type=category" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="catName">Category Name</label>
                         <input type="text" class="form-control" name="catName" id="catName">
@@ -74,7 +74,7 @@
 
                    
                     <div class="text-center">
-                        <button type="submit" name="insert" class="btn btn-info btn-lg w-25">Submit</button>
+                        <button type="submit" name="submit" class="btn btn-info btn-lg w-25">Submit</button>
                     </div>
                 </form>
             </div>

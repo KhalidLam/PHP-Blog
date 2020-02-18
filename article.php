@@ -63,7 +63,7 @@
 
                         <td><?= $row['article_id'] ?></td>
                         <td><?= $row['article_title'] ?></td>
-                        <td><?= strip_tags(substr($row['article_content'], 0, 60)) . "..." ?></td>
+                        <td class="text-break"><?= strip_tags(substr($row['article_content'], 0, 40)) . "..." ?></td>
                         <td><img src="img/article/<?= $row['article_image'] ?>" style="width: 100px; height: auto;"></td>
                         <td><?= $row['article_created_time'] ?></td>
                         <td><?= $row['category_name'] ?></td>
@@ -80,7 +80,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="assest/delete_article.php?id=<?= $row['article_id'] ?> ">
+                            <a class="btn btn-danger" href="assest/delete.php?type=article&id=<?= $row['article_id'] ?> ">
                                 <i class="fa fa-trash " aria-hidden="true"></i>
                             </a>
                         </td>
@@ -97,7 +97,7 @@
         <div class="row ">
 
             <div class="col-lg-12 text-center mb-3">
-                <a class="btn btn-primary" href="add_article.php">Add Article</a>
+                <a class="btn btn-info" href="add_article.php">Add Article</a>
             </div>
 
         </div>

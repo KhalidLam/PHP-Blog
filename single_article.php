@@ -61,7 +61,7 @@
                                 </span>
                             </div>
 
-                            <div class="post-body">
+                            <div class="post-body text-break">
 
                                 <?= $row["article_content"] ?>
 
@@ -70,7 +70,8 @@
                             <!-- Autheur Info -->
                             <div class="post-footer d-flex my-4 py-3 border border-muted">
                             
-                                <img class="profile-thumbnail" src="img/avatar/<?= $row['autheur_avatar']?>" alt="test avatar image" >
+                                <img class="profile-thumbnail rounded-circle" src="img/avatar/<?= $row['autheur_avatar']?>" alt="test avatar image" 
+                                    style="width: 150px;height: 150px;">
                                 <div class="d-flex flex-column justify-content-between">
                                     <h2 class="font-italic"><?= $row['autheur_fullname']?></h2>
                                     <p class="text-muted mb-1"><?= $row['autheur_desc']?></p>

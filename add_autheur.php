@@ -41,7 +41,7 @@
 
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
-                <form action="assest/insert_autheur.php" method="POST" enctype="multipart/form-data">
+                <form action="assest/insert.php?type=autheur" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="authName">Full Name</label>

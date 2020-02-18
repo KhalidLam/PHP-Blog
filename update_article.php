@@ -6,59 +6,6 @@
     // Get article Data to display
     $article = $conn->query("SELECT * FROM article WHERE article_id = $article_id ")->fetch();
 
-    if(isset($_POST["update"])){
-
-        // Update DataBase  
-        $title = $_POST["arTitle"];
-        $content = $_POST["arContent"];
-        $categorie = $_POST["arCategory"];
-        $autheur = $_POST["arAutheur"];
-        $imageName = $_FILES["arImage"]["name"];
-
-        // Upload Image
-        if($_FILES["arImage"]['error'] === 0){
-            uploadImage("arImage", "img/article/");
-        }else { 
-            $imageName = $article["article_image"];  
-        }
-
-        try {
-
-            $sql = "UPDATE `article` 
-                SET `article_title`= ?, `article_content`= ?,`article_image`=?, `id_categorie`=?, `id_autheur`= ? 
-                WHERE `article_id` = $article_id";
-            
-            $stmt = $conn->prepare($sql);
-
-            $stmt->execute([$title, $content, $imageName, $categorie, $autheur]);
-            
-            // echo a message to say the UPDATE succeeded
-            echo "Article UPDATED successfully";
-
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
-        // Go to show.php 
-        header("refresh:1; url=article.php");
-    }
-
-    function uploadImage($name, $dest){
-        // Upload Image
-        $fileName = $_FILES[$name]['name'];
-        $fileTmpName = $_FILES[$name]['tmp_name'];
-        $fileError = $_FILES[$name]['error'];
-    
-        if($fileError === 0){
-            $fileDestination = $dest.$fileName;
-            move_uploaded_file($fileTmpName, $fileDestination);
-            echo "Image Upload Successful";
-        }else {
-            echo "Image Upload Error";
-        }
-    }
-    
-
 ?>
     
     <!-- JS TextEditor -->
@@ -100,13 +47,9 @@
 
         <div class="row">
 
-        <!-- 
-            UPDATE `article` SET `article_content` = 'This is a longer card with supporting text below as a ' 
-            WHERE `article`.`article_id` = 2;  -->
-            
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="assest/update.php?type=article&id=<?= $article_id ?>&img=<?= $article["article_image"] ?>" method="POST" enctype="multipart/form-data">
                 
                     <div class="form-group">
                         <label for="arTitle">Title</label>

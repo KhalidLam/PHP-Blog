@@ -68,7 +68,7 @@
                         <td><?= $row['autheur_fullname'] ?></td>
                         <td><?= $row['autheur_desc'] ?></td>
                         <td>
-                            <img src="img/avatar/<?= $row['autheur_avatar'] ?>" style="width: 100px; height: auto;">
+                            <img src="img/avatar/<?= $row['autheur_avatar'] ?>" style="width: 100px; height: auto;border-radius: 100%;">
                         </td>
                         <td><?= $row['autheur_email'] ?></td>
                         <td class="text-center">
@@ -93,7 +93,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="assest/delete_autheur.php?id=<?= $row['autheur_id'] ?>">
+                            <a class="btn btn-danger" href="assest/delete.php?type=autheur&id=<?= $row['autheur_id'] ?>">
                                 <i class="fa fa-trash " aria-hidden="true"></i>
                             </a>
                         </td>
@@ -110,7 +110,7 @@
         <div class="row ">
 
             <div class="col-lg-12 text-center mb-3">
-                <a class="btn btn-primary" href="add_autheur.php">Add Article</a>
+                <a class="btn btn-info" href="add_autheur.php">Add Autheur</a>
             </div>
 
         </div>
