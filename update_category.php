@@ -9,9 +9,6 @@
 
 ?>
 
-    <!-- Custom CSS -->
-    <link href="css/footer.css" rel="stylesheet">
-
     <title>Update Category</title>
 </head>
 
@@ -72,7 +69,7 @@
 
         </div>
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>

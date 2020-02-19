@@ -1,8 +1,8 @@
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
     
     <!-- JS TextEditor -->
     <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-    <link href="css/add_article.css" rel="stylesheet">
 
     <title>Add Article</title>
 </head>
@@ -97,16 +97,16 @@
 
         </div>
 
-    </main><!-- /.container -->
+    </main>
 
-    <!-- Footer -->
+    <!-- Include Footer -->
     <?php include "assest/footer.php" ?>
+
 
     <!-- Text Editor Script -->
     <script>
         CKEDITOR.replace( 'arContent' );
     </script>
-
 </body>
 
 </html>

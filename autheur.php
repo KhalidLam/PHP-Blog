@@ -1,15 +1,12 @@
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
 
-<link href="css/footer.css" rel="stylesheet">
-
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<title>All Autheur</title>
-<style>
-    .fa-twitter, .fa-github,.fa-linkedin-square {
-        font-size: 2.3rem;
-    }
-</style>
+    <title>All Autheur</title>
+    <style>
+        .fa-twitter, .fa-github,.fa-linkedin-square {
+            font-size: 2.3rem;
+        }
+    </style>
 </head>
 
 <body>

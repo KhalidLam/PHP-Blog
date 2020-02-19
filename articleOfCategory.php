@@ -1,14 +1,14 @@
 <?php
-$catID = $_GET["catID"];
+    $catID = $_GET["catID"];
 ?>
-
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-<link href="css/home.css" rel="stylesheet">
-<title>Home</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
 
+    <title>Articles</title>
 </head>
 
 <body>
@@ -38,8 +38,6 @@ $catID = $_GET["catID"];
                                 <h5 class="card-title">
                                     <a href="single_article.php?id=<?= $row['article_id'] ?>" class="text-dark"> <?= $row['article_title'] ?> </a>
                                 </h5>
-
-                                <!-- <p class="card-text"> // truncate($row['article_content'], 80)</p> -->
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">

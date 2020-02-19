@@ -1,3 +1,4 @@
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
 <?php
 
@@ -8,9 +9,7 @@
 
 ?>
 
-<link href="css/footer.css" rel="stylesheet">
-
-<title>Update Autheur</title>
+    <title>Update Autheur</title>
 </head>
 
 <body>
@@ -91,7 +90,7 @@
 
         </div>
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>

@@ -1,3 +1,4 @@
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
 <?php 
 
@@ -10,7 +11,6 @@
     
     <!-- JS TextEditor -->
     <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-    <link href="css/footer.css" rel="stylesheet">
 
     <title>Update Article</title>
 </head>
@@ -108,7 +108,6 @@
 
                                 <?php endif; ?>
 
-                                
                             
                             <?php  
                                 endforeach;
@@ -122,7 +121,6 @@
                     </div>
                     
                     
-
                 </form>
             </div>
 
@@ -133,7 +131,7 @@
 
         </div>
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>

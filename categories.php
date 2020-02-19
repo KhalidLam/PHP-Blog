@@ -1,24 +1,17 @@
-<?php 
-    // function random_color_part() {
-    //     return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
-    // }
-
-    // function random_color() {
-    //     return random_color_part() . random_color_part() . random_color_part();
-    // }
-?>
-
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
     
-    <link href="css/category.css" rel="stylesheet">
     <title>Category</title>
 </head>
 
 <body>
+
+    <!-- Header -->
     <header class="blog-header">
         <?php include "assest/header.php" ?>
-    </header><!-- Header -->
+    </header>
 
+    <!-- Main -->
     <main role="main" class="">
 
         <div class="jumbotron text-center mb-0 pb-5">
@@ -55,11 +48,10 @@
 
             </div>
             
-            
         </div>
 
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>

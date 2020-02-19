@@ -7,15 +7,12 @@
     
     $commentQuery = $conn->query("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = $article_id")->fetchAll();
 
-
 ?>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/single_article.css">
 
-
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/single_article.css">
-<title>Single Article</title>
+    <title>Single Article</title>
 </head>
 
 <body>
@@ -118,14 +115,11 @@
                                 <div class="row">
                                     <div class="col-md-2 text-center">
                                         <img src="img/avatar/<?= $comment['comment_avatar'] ?>" class="img img-rounded img-fluid w-50" />
-                                        <!-- <p class="text-secondary text-center"></p> -->
-                                        <!-- <i class="text-muted fa fa-heart"></i><span class="px-2">3</span> -->
                                     </div>
                                     <div class="col-md-10">
                                         <p>
-                                            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><?= "User-".$comment['comment_username'] ?></strong></a>
+                                            <a class="float-left" href="#"><strong><?= "User-".$comment['comment_username'] ?></strong></a>
                                             <span class="float-right px-2 text-muted"><?= $comment['comment_date'] ?></span>
-                                            <!-- <span class="float-right"><i class="text-muted fa fa-heart"></i></span> -->
                                         </p>
                                         <div class="clearfix"></div>
                                         <p class="text-secondary mt-2"><?= $comment['comment_content'] ?></p>

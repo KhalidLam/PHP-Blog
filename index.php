@@ -1,9 +1,11 @@
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
 
-    <link href="css/home.css" rel="stylesheet">
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/home.css" rel="stylesheet"> 
     
     <title>Home</title>
 </head>
@@ -13,22 +15,6 @@
     <header class="blog-header">
 
         <?php include "assest/header.php" ?>
-
-        <!-- <div class="nav-scroller border py-1 px-4  mb-0">
-            <nav class="nav d-flex justify-content-between">
-                <a class="p-2 text-muted" href="#">Accessibility</a>
-                <a class="p-2 text-muted" href="#">Android Dev</a>
-                <a class="p-2 text-muted" href="#">Gadgets</a>
-                <a class="p-2 text-muted" href="#">Blockchain</a>
-                <a class="p-2 text-muted" href="#">Cryptocurrency</a>
-                <a class="p-2 text-muted" href="#">Cybersecurity</a>
-                <a class="p-2 text-muted" href="#">Data Science</a>
-                <a class="p-2 text-muted" href="#">iOS Dev</a>
-                <a class="p-2 text-muted" href="#">Javascript</a>
-                <a class="p-2 text-muted" href="#">Programming</a>
-                <a class="p-2 text-muted" href="#">UX</a>
-            </nav>
-        </div> -->
 
         <div class="jumbotron text-center p-0 mb-0">
             <div class="p-0">
@@ -79,8 +65,6 @@
                                         <a href="single_article.php?id=<?= $row['article_id']?>" class="text-dark"> <?= $row['article_title'] ?> </a>
                                     </h5>
                                     
-                                    <!-- <p class="card-text"> // truncate($row['article_content'], 80)</p> -->
-                                    
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="single_article.php?id=<?= $row['article_id']?>" class="btn btn-sm btn-outline-secondary">View</a>
@@ -95,145 +79,6 @@
                     <?php 
                         endforeach;
                     ?>
-
-
-                    <!-- <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                with supporting text below as a natural
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/715"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col mb-4 stretch">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="https://picsum.photos/360/215"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Pagedraw UI Builder Turns Your Website Design</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">March 27, 2018</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
             </div>

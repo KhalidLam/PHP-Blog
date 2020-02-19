@@ -1,11 +1,7 @@
+<!-- Include Head -->
 <?php include "assest/head.php"; ?>
 
-<!-- JS TextEditor -->
-<link href="css/footer.css" rel="stylesheet">
-
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<title>Add Article</title>
+    <title>Add Article</title>
 </head>
 
 <body>
@@ -87,7 +83,7 @@
 
         </div>
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>

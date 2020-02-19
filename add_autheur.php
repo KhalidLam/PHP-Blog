@@ -1,9 +1,6 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
   
-    <!-- Custom CSS -->
-    <link href="css/footer.css" rel="stylesheet">
-
     <title>Add Autheur</title>
 </head>
 
@@ -78,20 +75,11 @@
 
         </div>
 
-    </main><!-- /.container -->
+    </main>
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>
 
-
-    <script>
-        $('#authImage').on('change',function(){
-            //get the file name
-            var fileName = $(this).val();
-            //replace the "Choose a file" label
-            $(this).next('.custom-file-label').html(fileName);
-        })
-    </script>
 
 </body>
 
