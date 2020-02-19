@@ -31,7 +31,7 @@ The MySQL database server
 
 ## Authors
 
-* **Khalid Lamsadi** - *Initial work* - [KhalidLam](https://github.com/KhalidLam)
+* **Khalid Lamsadi** - ** - [KhalidLam](https://github.com/KhalidLam)
 
 ## License
 
