@@ -14,6 +14,7 @@
 
     } catch(PDOException $e) {
         $GLOBALS['e'] = $e;
+        echo "Connection failed: " . $e->getMessage();
     }
 
 ?>

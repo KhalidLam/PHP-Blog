@@ -37,7 +37,9 @@
 
                 <tbody>
                     <?php
-                    $data = $conn->query("SELECT * FROM article, autheur, category WHERE id_categorie = category_id AND autheur_id = id_autheur ORDER BY article_id DESC")->fetchAll();
+                    $stmt = $conn->prepare("SELECT * FROM article, autheur, category WHERE id_categorie = category_id AND autheur_id = id_autheur ORDER BY article_id DESC");
+                    $stmt->execute();
+                    $data = $stmt->fetchAll();
                     foreach ($data as $row) {
                         echo "<tr>";
                     ?>

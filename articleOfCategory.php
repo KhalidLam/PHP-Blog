@@ -28,7 +28,9 @@
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                     <?php
-                        $data = $conn->query("SELECT * FROM article WHERE id_categorie = $catID ")->fetchAll();
+                        $stmt = $conn->prepare("SELECT * FROM article WHERE id_categorie = $catID");
+                        $stmt->execute();
+                        $data = $stmt->fetchAll();
                         foreach ($data as $row) :
                     ?>
                     <div class="col mb-4 stretch">

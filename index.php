@@ -19,15 +19,15 @@
         <div class="jumbotron text-center p-0 mb-0">
             <div class="p-0">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" style="height: 480px;width: 100%;">
                         <div class="carousel-item active">
                             <img src="img/slider/1.jpg" class="w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/slider/1.jpg" class="w-100" alt="...">
+                            <img src="img/slider/2.jpg" class="w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/slider/1.jpg" class="w-100" alt="...">
+                            <img src="img/slider/3.jpg" class="w-100" alt="...">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -54,7 +54,9 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
 
                     <?php
-                        $data = $conn->query("SELECT * FROM article")->fetchAll();
+                        $stmt = $conn->prepare("SELECT * FROM article");
+                        $stmt->execute();
+                        $data = $stmt->fetchAll();
                         foreach ($data as $row) :
                     ?>
                         <div class="col mb-4 stretch">

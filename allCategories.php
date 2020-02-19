@@ -36,7 +36,9 @@
 
                 <tbody>
                     <?php
-                    $data = $conn->query("SELECT * FROM category")->fetchAll();
+                    $stmt = $conn->prepare("SELECT * FROM category");
+                    $stmt->execute();
+                    $data = $stmt->fetchAll();
                     foreach ($data as $row) {
                         echo "<tr>";
                     ?>

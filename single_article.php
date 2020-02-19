@@ -3,10 +3,13 @@
 <?php
     $article_id = $_GET['id'];
     
-    $data = $conn->query("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id ")->fetchAll();
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id");
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     
-    $commentQuery = $conn->query("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = $article_id")->fetchAll();
-
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = $article_id");
+    $stmt->execute();
+    $commentQuery = $stmt->fetchAll();
 ?>
     
     <!-- Custom CSS -->
@@ -32,10 +35,7 @@
                 <!-- Article Post -->
                 <div class="col-lg-9 p-0 border border-muted">
 
-                    <?php
-                    // $data = $conn->query("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id ")->fetchAll();
-                    foreach ($data as $row) :
-                    ?>
+                    <?php foreach ($data as $row) : ?>
 
                         <!-- Post Image -->
                         <div class="post__img" style="background-image: url('img/article/<?= $row["article_image"] ?>');"></div>

@@ -5,7 +5,9 @@
     $category_id = $_GET["id"];
 
     // Get category Data to display
-    $category = $conn->query("SELECT * FROM category WHERE category_id = $category_id ")->fetch(); 
+    $stmt = $conn->prepare("SELECT * FROM category WHERE category_id = $category_id");
+    $stmt->execute();
+    $category = $stmt->fetch();
 
 ?>
 
@@ -65,7 +67,6 @@
             <div class="col-lg-4 mb-4">
                 <!-- <h1> Random Articles </h1>  -->
             </div>
-
 
         </div>
 

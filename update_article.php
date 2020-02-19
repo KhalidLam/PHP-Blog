@@ -5,7 +5,9 @@
     $article_id = $_GET["id"];
 
     // Get article Data to display
-    $article = $conn->query("SELECT * FROM article WHERE article_id = $article_id ")->fetch();
+   $stmt = $conn->prepare("SELECT * FROM article WHERE article_id = $article_id");
+    $stmt->execute();
+    $article = $stmt->fetch();
 
 ?>
     
@@ -68,7 +70,9 @@
                             <option disabled>-- Select Category --</option>
 
                             <?php
-                                $data = $conn->query("SELECT category_id, category_name FROM category")->fetchAll();
+                                $stmt = $conn->prepare("SELECT category_id, category_name FROM category");
+                                $stmt->execute();
+                                $data = $stmt->fetchAll();
                                 foreach ($data as $row) :
                             ?>
 
@@ -94,7 +98,9 @@
                             <option disabled>-- Select Autheur --</option>
 
                             <?php
-                                $data = $conn->query("SELECT autheur_id, autheur_fullname FROM autheur")->fetchAll();
+                                $stmt = $conn->prepare("SELECT autheur_id, autheur_fullname FROM autheur");
+                                $stmt->execute();
+                                $data = $stmt->fetchAll();
                                 foreach ($data as $row) :
                             ?>
 

@@ -19,7 +19,9 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
 
                     <?php
-                        $data = $conn->query("SELECT * FROM category")->fetchAll();
+                        $stmt = $conn->prepare("SELECT * FROM category");
+                        $stmt->execute();
+                        $data = $stmt->fetchAll();
                         foreach ($data as $row) :   
                     ?>
 

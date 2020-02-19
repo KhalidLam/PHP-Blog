@@ -53,7 +53,9 @@
                             <option disabled>-- Select Category --</option>
 
                             <?php
-                                $data = $conn->query("SELECT category_id, category_name FROM category")->fetchAll();
+                                $stmt = $conn->prepare("SELECT category_id, category_name FROM category");
+                                $stmt->execute();
+                                $data = $stmt->fetchAll();
                                 foreach ($data as $row) :
                             ?>
                                 <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
@@ -71,7 +73,9 @@
                             <option disabled>-- Select Autheur --</option>
 
                             <?php
-                                $data = $conn->query("SELECT autheur_id, autheur_fullname FROM autheur")->fetchAll();
+                                $stmt = $conn->prepare("SELECT autheur_id, autheur_fullname FROM autheur");
+                                $stmt->execute();
+                                $data = $stmt->fetchAll();
                                 foreach ($data as $row) :
                             ?>
 

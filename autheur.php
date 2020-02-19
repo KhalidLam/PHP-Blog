@@ -43,7 +43,9 @@
 
                 <tbody>
                     <?php
-                    $data = $conn->query("SELECT * FROM autheur")->fetchAll();
+                    $stmt = $conn->prepare("SELECT * FROM autheur");
+                    $stmt->execute();
+                    $data = $stmt->fetchAll();
                     foreach ($data as $row) {
                         echo "<tr>";
                     ?>
