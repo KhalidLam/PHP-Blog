@@ -5,8 +5,8 @@
     $category_id = $_GET["id"];
 
     // Get category Data to display
-    $stmt = $conn->prepare("SELECT * FROM category WHERE category_id = $category_id");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM category WHERE category_id = ?");
+    $stmt->execute([$category_id]);
     $category = $stmt->fetch();
 
 ?>

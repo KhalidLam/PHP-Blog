@@ -15,12 +15,12 @@ if ($conn) {
 
                 // PREPARE DATA TO INSERT INTO DB 
                 $data = array (
-                    "article_title" => $_POST["arTitle"],
+                    "article_title" => test_input($_POST["arTitle"]),
                     "article_content" => $_POST["arContent"],
-                    "article_image" => $_FILES["arImage"]["name"],
+                    "article_image" => test_input($_FILES["arImage"]["name"]),
                     "article_created_time" => date('Y-m-d H:i:s'),
-                    "id_categorie" => $_POST["arCategory"],
-                    "id_autheur" => $_POST["arAutheur"]
+                    "id_categorie" => test_input($_POST["arCategory"]),
+                    "id_autheur" => test_input($_POST["arAutheur"])
                 );
 
                 // $tableName = 'article';
@@ -41,9 +41,9 @@ if ($conn) {
                 
                 // PREPARE DATA TO INSERT INTO DB 
                 $data = array (
-                    "category_name"  => $_POST["catName"],
-                    "category_image" => $_FILES["catImage"]["name"],
-                    "category_color" => $_POST["catColor"],
+                    "category_name"  => test_input($_POST["catName"]),
+                    "category_image" => test_input($_FILES["catImage"]["name"]),
+                    "category_color" => test_input($_POST["catColor"]),
                 );
 
                 // $tableName = 'category';
@@ -62,21 +62,21 @@ if ($conn) {
                 // Upload Image
                 uploadImage("authImage", "../img/avatar/");
 
-                // PREPARE DATA TO INSERT INTO DB 
+                // PREPARE DATA TdO INSERT INTO DB 
                 $data = array(
-                    "autheur_fullname" => $_POST["authName"],
-                    "autheur_desc" => $_POST["authDesc"],
-                    "autheur_email" =>  $_POST["authEmail"],
-                    "autheur_twitter" =>  $_POST["authTwitter"],
-                    "autheur_github" => $_POST["authGithub"],
-                    "autheur_link" => $_POST["authLinkedin"],
-                    "autheur_avatar" =>$_FILES["authImage"]["name"]
+                    "autheur_fullname" => test_input($_POST["authName"]),
+                    "autheur_desc" => test_input($_POST["authDesc"]),
+                    "autheur_email" =>  test_input($_POST["authEmail"]),
+                    "autheur_twitter" =>  test_input($_POST["authTwitter"]),
+                    "autheur_github" => test_input($_POST["authGithub"]),
+                    "autheur_link" => test_input($_POST["authLinkedin"]),
+                    "autheur_avatar" => test_input($_FILES["authImage"]["name"])
                 );
 
                 $tableName = 'autheur';
 
                 // Call insert function 
-                insertToDB($conn, $tableName, $data);
+                insertToDB($conn, $tableName, $ata);
 
                 // Go to show.php 
                 // header("refresh:1; url=../autheur.php");
@@ -86,15 +86,15 @@ if ($conn) {
             
             case "comment":
                 
-                $id = $_POST["id_article"];
+                $id = test_input($_POST["id_article"]);
 
                 // PREPARE DATA TO INSERT INTO DB 
                 $data = array(
-                    "comment_username" => $_POST["username"],
-                    // "comment_avatar" => $_POST["comment_avatar"],
-                    "comment_content" => $_POST["comment"],
+                    "comment_username" => test_input($_POST["username"]),
+                    // "comment_avatar" => test_input($_POST["comment_avatar"]),
+                    "comment_content" => test_input($_POST["comment"]),
                     "comment_date" => date('Y-m-d H:i:s'),
-                    "id_article" =>  $_POST["id_article"]
+                    "id_article" =>  test_input($_POST["id_article"])
                 );
 
                 $tableName = 'comment';
@@ -159,6 +159,13 @@ function uploadImage($name, $dest){
     }else {
         echo "Image Upload Error";
     }
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 ?>

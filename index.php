@@ -54,7 +54,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
 
                     <?php
-                        $stmt = $conn->prepare("SELECT * FROM article");
+                        $stmt = $conn->prepare("SELECT * FROM `article` ORDER BY `article`.`article_created_time` DESC");
                         $stmt->execute();
                         $data = $stmt->fetchAll();
                         foreach ($data as $row) :

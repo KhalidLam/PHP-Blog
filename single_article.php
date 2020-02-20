@@ -3,12 +3,12 @@
 <?php
     $article_id = $_GET['id'];
     
-    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = $article_id");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = ?");
+    $stmt->execute([$article_id]);
     $data = $stmt->fetchAll();
     
-    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = $article_id");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = ?");
+    $stmt->execute([$article_id]);
     $commentQuery = $stmt->fetchAll();
 ?>
     
@@ -33,7 +33,7 @@
             <div class="row">
 
                 <!-- Article Post -->
-                <div class="col-lg-9 p-0 border border-muted">
+                <div class="content col-lg-9 p-0 border border-muted">
 
                     <?php foreach ($data as $row) : ?>
 

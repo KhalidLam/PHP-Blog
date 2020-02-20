@@ -30,13 +30,13 @@
                 <form action="assest/insert.php?type=article" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="arTitle">Title</label>
-                        <input type="text" class="form-control" name="arTitle" id="arTitle">
+                        <input type="text" class="form-control" name="arTitle" id="arTitle" required>
                     </div>
 
                     <div class="form-group">
                         <label for="arContent">Content</label>
 
-                        <textarea class="form-control" name="arContent" id="arContent" rows="3"></textarea>
+                        <textarea class="form-control" name="arContent" id="arContent" rows="3" required></textarea>
                     </div>
 
                     <div class="form-group">
@@ -49,7 +49,7 @@
 
                     <div class="form-group">
                         <label for="arCategory">Category</label>
-                        <select class="custom-select" name="arCategory" id="arCategory">
+                        <select class="custom-select" name="arCategory" id="arCategory" required>
                             <option disabled>-- Select Category --</option>
 
                             <?php
@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label for="arAutheur">Autheur</label>
-                        <select class="custom-select" name="arAutheur" id="arAutheur">
+                        <select class="custom-select" name="arAutheur" id="arAutheur" required>
                             <option disabled>-- Select Autheur --</option>
 
                             <?php

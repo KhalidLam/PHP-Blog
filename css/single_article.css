@@ -20,3 +20,8 @@
 .bg-l {
     background-color: #e9ecef;
 }
+
+.content img {
+    max-width: 95%;
+    height: auto;
+}

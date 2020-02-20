@@ -5,8 +5,8 @@
     $autheur_id = $_GET["id"];
 
     // Get article Data to display
-    $stmt = $conn->prepare("SELECT * FROM autheur WHERE autheur_id = $autheur_id");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM autheur WHERE autheur_id = ?");
+    $stmt->execute([$autheur_id]);
     $autheur = $stmt->fetch();
 
 ?>
