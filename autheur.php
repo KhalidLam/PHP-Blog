@@ -46,7 +46,7 @@
                     $stmt = $conn->prepare("SELECT * FROM autheur");
                     $stmt->execute();
                     $data = $stmt->fetchAll();
-                    foreach ($data as $row) {
+                    foreach ($data as $row) :
                         echo "<tr>";
                     ?>
 
@@ -86,7 +86,7 @@
 
                     <?php
                         echo "</tr>";
-                    }
+                        endforeach;
                     ?>
                 </tbody>
 

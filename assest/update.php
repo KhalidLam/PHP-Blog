@@ -44,7 +44,9 @@ if ($conn) {
                 }
 
                 // Go to show.php 
-                header("refresh:1; url=../article.php");
+                // header("refresh:1; url=../article.php");
+                header("Location: ../article.php", true, 301);
+                exit;
                 break;
 
             case "category":
@@ -79,7 +81,9 @@ if ($conn) {
                 }
 
                 // Go to show.php 
-                header("refresh:1; url=../allCategories.php");
+                // header("refresh:1; url=../allCategories.php");
+                header("Location: ../allCategories.php", true, 301);
+                exit;
                 
                 break;
             case "autheur":
@@ -116,7 +120,9 @@ if ($conn) {
                 }
 
                 // Go to show.php 
-                header("refresh:1; url=../autheur.php");
+                // header("refresh:1; url=../autheur.php");
+                header("Location: ../autheur.php", true, 301);
+                exit;
                 break;
 
             default:

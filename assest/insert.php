@@ -29,7 +29,9 @@ if ($conn) {
                 insertToDB($conn, $type, $data);
 
                 // Go to show.php 
-                header("refresh:1; url=../index.php");
+                // header("refresh:1; url=../index.php");
+                header("Location: ../index.php", true, 301);
+                exit;
                 break;
 
             case "category":
@@ -50,7 +52,9 @@ if ($conn) {
                 insertToDB($conn, $type, $data);
 
                 // Go to show.php 
-                header("refresh:1; url=../categories.php");
+                // header("refresh:1; url=../categories.php");
+                header("Location: ../categories.php", true, 301);
+                exit;
                 break;
 
             case "autheur":
@@ -75,7 +79,9 @@ if ($conn) {
                 insertToDB($conn, $tableName, $data);
 
                 // Go to show.php 
-                header("refresh:1; url=../autheur.php");
+                // header("refresh:1; url=../autheur.php");
+                header("Location: ../autheur.php", true, 301);
+                exit;
                 break;
             
             case "comment":
@@ -97,7 +103,9 @@ if ($conn) {
                 insertToDB($conn, $tableName, $data);
 
                 // Go to show.php 
-                header("refresh:1; url=../single_article.php?id=$id");
+                // header("refresh:1; url=../single_article.php?id=$id");
+                header("Location: ../single_article.php?id=$id", true, 301);
+                exit;
                 break;
             
             default:
