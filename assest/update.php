@@ -14,11 +14,11 @@ if ($conn) {
             case "article":
                 
                 // Update DataBase  
-                $title = $_POST["arTitle"];
+                $title = test_input($_POST["arTitle"]);
                 $content = $_POST["arContent"];
-                $categorie = $_POST["arCategory"];
-                $autheur = $_POST["arAutheur"];
-                $imageName = $_FILES["arImage"]["name"];
+                $categorie = test_input($_POST["arCategory"]);
+                $autheur = test_input($_POST["arAutheur"]);
+                $imageName = test_input($_FILES["arImage"]["name"]);
 
                 // Upload Image
                 if($_FILES["arImage"]['error'] === 0){
@@ -30,11 +30,11 @@ if ($conn) {
                 try {
                     $sql = "UPDATE `article` 
                         SET `article_title`= ?, `article_content`= ?,`article_image`=?, `id_categorie`=?, `id_autheur`= ? 
-                        WHERE `article_id` = $urlId";
+                        WHERE `article_id` = ?";
                     
                     $stmt = $conn->prepare($sql);
 
-                    $stmt->execute([$title, $content, $imageName, $categorie, $autheur]);
+                    $stmt->execute([$title, $content, $imageName, $categorie, $autheur, $urlId]);
                     
                     // echo a message to say the UPDATE succeeded
                     echo "Article UPDATED successfully";
@@ -52,9 +52,9 @@ if ($conn) {
             case "category":
                 
                 // Update DataBase  
-                $name = $_POST["catName"];
-                $color = $_POST["catColor"];
-                $imageName = $_FILES["catImage"]["name"];
+                $name = test_input($_POST["catName"]);
+                $color = test_input($_POST["catColor"]);
+                $imageName = test_input($_FILES["catImage"]["name"]);
 
                 // Upload Image
                 if($_FILES["catImage"]['error'] === 0){
@@ -67,11 +67,11 @@ if ($conn) {
 
                     $sql = "UPDATE `category` 
                         SET `category_name`= ?, `category_image`= ?,`category_color`=? 
-                        WHERE `category_id` = $urlId";
+                        WHERE `category_id` = ?";
                     
                     $stmt = $conn->prepare($sql);
 
-                    $stmt->execute([$name, $imageName, $color]);
+                    $stmt->execute([$name, $imageName, $color, $urlId]);
                     
                     // echo a message to say the UPDATE succeeded
                     echo "Category UPDATED successfully";
@@ -88,13 +88,13 @@ if ($conn) {
                 break;
             case "autheur":
                 // Update DataBase  
-                $fullName = $_POST["authName"];
-                $description = $_POST["authDesc"];
-                $email = $_POST["authEmail"];
-                $twitter = $_POST["authTwitter"];
-                $github = $_POST["authGithub"];
-                $linkedin = $_POST["authLinkedin"];
-                $imageName = $_FILES["authImage"]["name"];
+                $fullName = test_input($_POST["authName"]);
+                $description = test_input($_POST["authDesc"]);
+                $email = test_input($_POST["authEmail"]);
+                $twitter = test_input($_POST["authTwitter"]);
+                $github = test_input($_POST["authGithub"]);
+                $linkedin = test_input($_POST["authLinkedin"]);
+                $imageName = test_input($_FILES["authImage"]["name"]);
 
                 // Upload Image
                 if($_FILES["authImage"]['error'] === 0){
@@ -106,11 +106,11 @@ if ($conn) {
                 try {
                     $sql = "UPDATE `autheur` 
                         SET `autheur_fullname`= ?, `autheur_desc`= ?,`autheur_email`=?, `autheur_twitter`=?, `autheur_github`= ?, `autheur_link`= ?, `autheur_avatar`= ?
-                        WHERE `autheur_id` = $urlId";
+                        WHERE `autheur_id` = ?";
                     
                     $stmt = $conn->prepare($sql);
 
-                    $stmt->execute([$fullName, $description, $email, $twitter, $github, $linkedin, $imageName]);
+                    $stmt->execute([$fullName, $description, $email, $twitter, $github, $linkedin, $imageName, $urlId]);
                     
                     // echo a message to say the UPDATE succeeded
                     echo "Autheur UPDATED successfully";
@@ -147,4 +147,11 @@ function uploadImage($name, $dest){
     }else {
         echo "Image Upload Error";
     }
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
