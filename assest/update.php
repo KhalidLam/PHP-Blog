@@ -120,7 +120,6 @@ if ($conn) {
                 }
 
                 // Go to show.php 
-                // header("refresh:1; url=../autheur.php");
                 header("Location: ../autheur.php", true, 301);
                 exit;
                 break;

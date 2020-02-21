@@ -44,7 +44,6 @@
     
         $conn = null;
     
-        // header("refresh:1, url='../$goto'");
         header("Location: ../$goto", true, 301);
         exit;
 
