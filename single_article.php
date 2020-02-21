@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/single_article.css">
 
     <title>Single Article</title>
+    
 </head>
 
 <body>

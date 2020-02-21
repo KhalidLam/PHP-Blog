@@ -25,3 +25,7 @@
     max-width: 95%;
     height: auto;
 }
+
+.content table *{
+    border: 1px solid black;
+}

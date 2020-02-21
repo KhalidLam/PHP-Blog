@@ -11,7 +11,7 @@ if ($conn) {
         switch($type){
             case "article":
                 // Upload Image
-                uploadImage("arImage", "../img/article/");
+                uploadImage2("arImage", "../img/article/");
 
                 // PREPARE DATA TO INSERT INTO DB 
                 $data = array (
@@ -36,7 +36,7 @@ if ($conn) {
             case "category":
 
                  // Upload Image
-                uploadImage("catImage", "../img/category/");
+                uploadImage2("catImage", "../img/category/");
                 
                 // PREPARE DATA TO INSERT INTO DB 
                 $data = array (
@@ -58,7 +58,7 @@ if ($conn) {
             case "autheur":
 
                 // Upload Image
-                uploadImage("authImage", "../img/avatar/");
+                uploadImage2("authImage", "../img/avatar/");
 
                 // PREPARE DATA TdO INSERT INTO DB 
                 $data = array(
@@ -142,26 +142,72 @@ function implodeArray($array){
     return implode(", ", $array);
 }
 
-function uploadImage($name, $dest){
-    // Upload Image
-    $fileName = $_FILES[$name]['name'];
-    $fileTmpName = $_FILES[$name]['tmp_name'];
-    $fileError = $_FILES[$name]['error'];
-
-    if($fileError === 0){
-        $fileDestination = $dest.$fileName;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        echo "Image Upload Successful";
-    }else {
-        echo "Image Upload Error";
-    }
-}
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
+}
+
+// function uploadImage($name, $dest){
+//     // Upload Image
+//     $fileName = $_FILES[$name]['name'];
+//     $fileTmpName = $_FILES[$name]['tmp_name'];
+//     $fileError = $_FILES[$name]['error'];
+
+//     if($fileError === 0){
+//         $fileDestination = $dest.$fileName;
+//         move_uploaded_file($fileTmpName, $fileDestination);
+//         echo "Image Upload Successful";
+//     }else {
+//         echo "Image Upload Error";
+//     }
+// }
+
+function uploadImage2($name, $dest){
+    
+    $target_dir = $dest;
+    $target_file = $target_dir . basename($_FILES[$name]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+   
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES[$name]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+   
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES[$name]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES[$name]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
 }
 
 ?>
