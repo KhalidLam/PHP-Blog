@@ -1,6 +1,11 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
+<?php 
+    $stmt = $conn->prepare("SELECT * FROM category");
+    $stmt->execute();
+    $categories = $stmt->fetchAll();
 
+?>
 
 <title>All Categories</title>
 </head>
@@ -35,37 +40,34 @@
                 </thead>
 
                 <tbody>
-                    <?php
-                    $stmt = $conn->prepare("SELECT * FROM category");
-                    $stmt->execute();
-                    $data = $stmt->fetchAll();
-                    foreach ($data as $row) {
+                    <?php   
+                    foreach ($categories as $category) :
                         echo "<tr>";
                     ?>
 
-                        <td><?= $row['category_id'] ?></td>
-                        <td><?= $row['category_name'] ?></td>
+                        <td><?= $category['category_id'] ?></td>
+                        <td><?= $category['category_name'] ?></td>
                         <td>
-                            <img src="img/category/<?= $row['category_image'] ?>" style="width: 100px; height: auto;">
+                            <img src="img/category/<?= $category['category_image'] ?>" style="width: 100px; height: auto;">
                         </td>
                         <td class="">
-                            <div style="width: 40px; height: 40px; border-radius: 100% ;background-color: <?= $row['category_color'] ?>"></div>
+                            <div style="width: 40px; height: 40px; border-radius: 100% ;background-color: <?= $category['category_color'] ?>"></div>
                         </td>
 
                         <td>
-                            <a class="btn btn-success" href="update_category.php?id=<?= $row['category_id'] ?> ">
+                            <a class="btn btn-success" href="update_category.php?id=<?= $category['category_id'] ?> ">
                                 <i class="fa fa-pencil " aria-hidden="true"></i>
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="assest/delete.php?type=category&id=<?= $row['category_id'] ?> ">
+                            <a class="btn btn-danger" href="assest/delete.php?type=category&id=<?= $category['category_id'] ?> ">
                                 <i class="fa fa-trash " aria-hidden="true"></i>
                             </a>
                         </td>
 
                     <?php
                         echo "</tr>";
-                    }
+                        endforeach;
                     ?>
                 </tbody>
 

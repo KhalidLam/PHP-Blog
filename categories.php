@@ -1,6 +1,10 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
-    
+<?php 
+    $stmt = $conn->prepare("SELECT * FROM category");
+    $stmt->execute();
+    $categories = $stmt->fetchAll();
+?>
     <title>Category</title>
 </head>
 
@@ -19,19 +23,16 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
 
                     <?php
-                        $stmt = $conn->prepare("SELECT * FROM category");
-                        $stmt->execute();
-                        $data = $stmt->fetchAll();
-                        foreach ($data as $row) :   
+                        foreach ($categories as $category) :   
                     ?>
 
                         <div class="col mb-4 d-flex align-items-stretch">
-                            <a href="articleOfCategory.php?catID=<?= $row['category_id'] ?>" 
+                            <a href="articleOfCategory.php?catID=<?= $category['category_id'] ?>" 
                                 class="card text-white py-3 btn w-100" 
-                                style="background-color: <?= $row['category_color'] ?>" >
+                                style="background-color: <?= $category['category_color'] ?>" >
                                 <div class="card-body d-flex align-items-center justify-content-center">
                                     <h2 class="card-title">
-                                        <?= $row['category_name'] ?>
+                                        <?= $category['category_name'] ?>
                                     </h2>
                                 </div>
                             </a>

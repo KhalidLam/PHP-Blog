@@ -20,7 +20,7 @@ if ($conn) {
                     "article_image" => test_input($_FILES["arImage"]["name"]),
                     "article_created_time" => date('Y-m-d H:i:s'),
                     "id_categorie" => test_input($_POST["arCategory"]),
-                    "id_autheur" => test_input($_POST["arAutheur"])
+                    "id_author" => test_input($_POST["arAuthor"])
                 );
 
                 // $tableName = 'article';
@@ -55,29 +55,29 @@ if ($conn) {
                 exit;
                 break;
 
-            case "autheur":
+            case "author":
 
                 // Upload Image
                 uploadImage2("authImage", "../img/avatar/");
 
                 // PREPARE DATA TdO INSERT INTO DB 
                 $data = array(
-                    "autheur_fullname" => test_input($_POST["authName"]),
-                    "autheur_desc" => test_input($_POST["authDesc"]),
-                    "autheur_email" =>  test_input($_POST["authEmail"]),
-                    "autheur_twitter" =>  test_input($_POST["authTwitter"]),
-                    "autheur_github" => test_input($_POST["authGithub"]),
-                    "autheur_link" => test_input($_POST["authLinkedin"]),
-                    "autheur_avatar" => test_input($_FILES["authImage"]["name"])
+                    "author_fullname" => test_input($_POST["authName"]),
+                    "author_desc" => test_input($_POST["authDesc"]),
+                    "author_email" =>  test_input($_POST["authEmail"]),
+                    "author_twitter" =>  test_input($_POST["authTwitter"]),
+                    "author_github" => test_input($_POST["authGithub"]),
+                    "author_link" => test_input($_POST["authLinkedin"]),
+                    "author_avatar" => test_input($_FILES["authImage"]["name"])
                 );
 
-                $tableName = 'autheur';
+                $tableName = 'author';
 
                 // Call insert function 
                 insertToDB($conn, $tableName, $ata);
 
                 // Go to show.php 
-                header("Location: ../autheur.php", true, 301);
+                header("Location: ../author.php", true, 301);
                 exit;
                 break;
             

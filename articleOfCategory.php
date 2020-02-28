@@ -1,8 +1,12 @@
-<?php
-    $catID = $_GET["catID"];
-?>
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
+<?php
+    $catID = $_GET["catID"];
+
+    $stmt = $conn->prepare("SELECT * FROM article WHERE id_categorie = ?");
+    $stmt->execute([$catID]);
+    $articles = $stmt->fetchAll();
+?>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -28,25 +32,22 @@
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                     <?php
-                        $stmt = $conn->prepare("SELECT * FROM article WHERE id_categorie = ?");
-                        $stmt->execute([$catID]);
-                        $data = $stmt->fetchAll();
-                        foreach ($data as $row) :
+                        foreach ($articles as $article) :
                     ?>
                     <div class="col mb-4 stretch">
                         <div class="card shadow-sm">
-                            <img class="card-img-top" src="img/article/<?= $row['article_image'] ?>" alt="...">
+                            <img class="card-img-top" src="img/article/<?= $article['article_image'] ?>" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="single_article.php?id=<?= $row['article_id'] ?>" class="text-dark"> <?= $row['article_title'] ?> </a>
+                                    <a href="single_article.php?id=<?= $article['article_id'] ?>" class="text-dark"> <?= $article['article_title'] ?> </a>
                                 </h5>
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="single_article.php?id=<?= $row['article_id'] ?>" class="btn btn-sm btn-outline-secondary">View</a>
-                                        <a href="update_article.php?id=<?= $row['article_id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a href="single_article.php?id=<?= $article['article_id'] ?>" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a href="update_article.php?id=<?= $article['article_id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                                     </div>
-                                    <small class="text-muted"><?= $row['article_created_time'] ?></small>
+                                    <small class="text-muted"><?= $article['article_created_time'] ?></small>
                                 </div>
                             </div> 
                         </div>

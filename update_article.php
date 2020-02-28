@@ -5,9 +5,19 @@
     $article_id = $_GET["id"];
 
     // Get article Data to display
-   $stmt = $conn->prepare("SELECT * FROM article WHERE article_id = $article_id");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM article WHERE article_id = ?");
+    $stmt->execute([$article_id]);
     $article = $stmt->fetch();
+
+    // Get categories Data to display
+    $stmt = $conn->prepare("SELECT category_id, category_name FROM category");
+    $stmt->execute();
+    $categories = $stmt->fetchAll();
+
+    // Get authors Data to display
+    $stmt = $conn->prepare("SELECT author_id, author_fullname FROM author");
+    $stmt->execute();
+    $authors = $stmt->fetchAll();
 
 ?>
     
@@ -69,55 +79,43 @@
                         <select class="custom-select" name="arCategory" id="arCategory">
                             <option disabled>-- Select Category --</option>
 
-                            <?php
-                                $stmt = $conn->prepare("SELECT category_id, category_name FROM category");
-                                $stmt->execute();
-                                $data = $stmt->fetchAll();
-                                foreach ($data as $row) :
-                            ?>
+                            <?php foreach ($categories as $category) : ?>
 
-                                <?php if($article['id_categorie'] == $row['category_id']) : ?>
+                                <?php if($article['id_categorie'] == $category['category_id']) : ?>
                                 
-                                    <option value="<?= $row['category_id'] ?>" selected><?= $row['category_name'] ?></option>
+                                    <option value="<?= $category['category_id'] ?>" selected><?= $category['category_name'] ?></option>
                                     
                                 <?php else : ?>
                                  
-                                    <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
+                                    <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
 
                                 <?php endif; ?>
 
-                            <?php  endforeach; ?>
+                            <?php endforeach; ?>
 
                         </select>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="arAutheur">Autheur</label>
-                        <select class="custom-select" name="arAutheur" id="arAutheur">
-                            <option disabled>-- Select Autheur --</option>
+                        <label for="arauthor">Author</label>
+                        <select class="custom-select" name="arAuthor" id="arAuthor">
+                            <option disabled>-- Select Author --</option>
 
-                            <?php
-                                $stmt = $conn->prepare("SELECT autheur_id, autheur_fullname FROM autheur");
-                                $stmt->execute();
-                                $data = $stmt->fetchAll();
-                                foreach ($data as $row) :
-                            ?>
+                            <?php foreach ($authors as $author) : ?>
 
-                                <?php if($article['id_autheur'] == $row['autheur_id']) : ?>
+                                <?php if($article['id_author'] == $author['author_id']) : ?>
                                 
-                                    <option value="<?= $row['autheur_id'] ?>" selected><?= $row['autheur_fullname'] ?></option>
+                                    <option value="<?= $author['author_id'] ?>" selected><?= $author['author_fullname'] ?></option>
 
                                 <?php else : ?>
                                 
-                                    <option value="<?= $row['autheur_id'] ?>"><?= $row['autheur_fullname'] ?></option>
+                                    <option value="<?= $author['author_id'] ?>"><?= $author['author_fullname'] ?></option>
 
                                 <?php endif; ?>
 
                             
-                            <?php  
-                                endforeach;
-                            ?>
+                            <?php endforeach; ?>
 
 
                         </select>

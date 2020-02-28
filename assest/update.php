@@ -17,7 +17,7 @@ if ($conn) {
                 $title = test_input($_POST["arTitle"]);
                 $content = $_POST["arContent"];
                 $categorie = test_input($_POST["arCategory"]);
-                $autheur = test_input($_POST["arAutheur"]);
+                $author = test_input($_POST["arAuthor"]);
                 $imageName = test_input($_FILES["arImage"]["name"]);
 
                 // Upload Image
@@ -29,12 +29,12 @@ if ($conn) {
 
                 try {
                     $sql = "UPDATE `article` 
-                        SET `article_title`= ?, `article_content`= ?,`article_image`=?, `id_categorie`=?, `id_autheur`= ? 
+                        SET `article_title`= ?, `article_content`= ?,`article_image`=?, `id_categorie`=?, `id_author`= ? 
                         WHERE `article_id` = ?";
                     
                     $stmt = $conn->prepare($sql);
 
-                    $stmt->execute([$title, $content, $imageName, $categorie, $autheur, $urlId]);
+                    $stmt->execute([$title, $content, $imageName, $categorie, $author, $urlId]);
                     
                     // echo a message to say the UPDATE succeeded
                     echo "Article UPDATED successfully";
@@ -86,7 +86,7 @@ if ($conn) {
                 exit;
                 
                 break;
-            case "autheur":
+            case "author":
                 // Update DataBase  
                 $fullName = test_input($_POST["authName"]);
                 $description = test_input($_POST["authDesc"]);
@@ -104,23 +104,23 @@ if ($conn) {
                 } 
 
                 try {
-                    $sql = "UPDATE `autheur` 
-                        SET `autheur_fullname`= ?, `autheur_desc`= ?,`autheur_email`=?, `autheur_twitter`=?, `autheur_github`= ?, `autheur_link`= ?, `autheur_avatar`= ?
-                        WHERE `autheur_id` = ?";
+                    $sql = "UPDATE `author` 
+                        SET `author_fullname`= ?, `author_desc`= ?,`author_email`=?, `author_twitter`=?, `author_github`= ?, `author_link`= ?, `author_avatar`= ?
+                        WHERE `author_id` = ?";
                     
                     $stmt = $conn->prepare($sql);
 
                     $stmt->execute([$fullName, $description, $email, $twitter, $github, $linkedin, $imageName, $urlId]);
                     
                     // echo a message to say the UPDATE succeeded
-                    echo "Autheur UPDATED successfully";
+                    echo "author UPDATED successfully";
 
                 }catch(PDOException $e){
                     echo $e->getMessage();
                 }
 
                 // Go to show.php 
-                header("Location: ../autheur.php", true, 301);
+                header("Location: ../author.php", true, 301);
                 exit;
                 break;
 

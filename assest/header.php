@@ -7,7 +7,7 @@
         <a class="p-2 px-5 text-muted" href="index.php">Home</a>
         <a class="p-2 px-5 text-muted" href="categories.php">Category</a>
         <a class="p-2 px-5 text-muted" href="article.php">Article</a>
-        <a class="p-2 px-5 text-muted" href="autheur.php">Autheur</a>
+        <a class="p-2 px-5 text-muted" href="author.php">Author</a>
     </nav>
 
     <a class="btn btn-outline-primary" href="#">Sign up</a>

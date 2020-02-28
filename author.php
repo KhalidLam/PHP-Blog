@@ -1,7 +1,12 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
+<?php 
+    $stmt = $conn->prepare("SELECT * FROM author");
+    $stmt->execute();
+    $authors = $stmt->fetchAll();
+?>
 
-    <title>All Autheur</title>
+    <title>All Author</title>
     <style>
         .fa-twitter, .fa-github,.fa-linkedin-square {
             font-size: 2.3rem;
@@ -17,7 +22,7 @@
         <?php include "assest/header.php" ?>
 
         <div class="jumbotron text-center mb-0">
-            <h1 class="display-3 font-weight-normal text-muted">All Autheur</h1>
+            <h1 class="display-3 font-weight-normal text-muted">All Author</h1>
         </div>
 
     </header>
@@ -43,43 +48,40 @@
 
                 <tbody>
                     <?php
-                    $stmt = $conn->prepare("SELECT * FROM autheur");
-                    $stmt->execute();
-                    $data = $stmt->fetchAll();
-                    foreach ($data as $row) :
+                    foreach ($authors as $author) :
                         echo "<tr>";
                     ?>
 
-                        <td><?= $row['autheur_id'] ?></td>
-                        <td><?= $row['autheur_fullname'] ?></td>
-                        <td><?= $row['autheur_desc'] ?></td>
+                        <td><?= $author['author_id'] ?></td>
+                        <td><?= $author['author_fullname'] ?></td>
+                        <td><?= $author['author_desc'] ?></td>
                         <td>
-                            <img src="img/avatar/<?= $row['autheur_avatar'] ?>" style="width: 100px; height: auto;border-radius: 100%;">
+                            <img src="img/avatar/<?= $author['author_avatar'] ?>" style="width: 100px; height: auto;border-radius: 100%;">
                         </td>
-                        <td><?= $row['autheur_email'] ?></td>
+                        <td><?= $author['author_email'] ?></td>
                         <td class="text-center">
-                            <a href="https://twitter.com/<?= $row['autheur_twitter'] ?>" target="_blank">
+                            <a href="https://twitter.com/<?= $author['author_twitter'] ?>" target="_blank">
                                 <i class="fa fa-twitter"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <a href="https://github.com/<?= $row['autheur_github'] ?>" target="_blank">
+                            <a href="https://github.com/<?= $author['author_github'] ?>" target="_blank">
                                 <i class="fa fa-github"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <a href="https://www.linkedin.com/in/<?= $row['autheur_link'] ?>" target="_blank">
+                            <a href="https://www.linkedin.com/in/<?= $author['author_link'] ?>" target="_blank">
                                 <i class="fa fa-linkedin-square"></i>
                             </a>
                         </td>
 
                         <td>
-                            <a class="btn btn-success" href="update_autheur.php?id=<?= $row['autheur_id'] ?>">
+                            <a class="btn btn-success" href="update_author.php?id=<?= $author['author_id'] ?>">
                                 <i class="fa fa-pencil " aria-hidden="true"></i>
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="assest/delete.php?type=autheur&id=<?= $row['autheur_id'] ?>">
+                            <a class="btn btn-danger" href="assest/delete.php?type=author&id=<?= $author['author_id'] ?>">
                                 <i class="fa fa-trash " aria-hidden="true"></i>
                             </a>
                         </td>
@@ -96,7 +98,7 @@
         <div class="row ">
 
             <div class="col-lg-12 text-center mb-3">
-                <a class="btn btn-info" href="add_autheur.php">Add Autheur</a>
+                <a class="btn btn-info" href="add_author.php">Add Author</a>
             </div>
 
         </div>

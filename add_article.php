@@ -1,5 +1,15 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
+<?php 
+    $stmt = $conn->prepare("SELECT category_id, category_name FROM category");
+    $stmt->execute();
+    $categories = $stmt->fetchAll();
+
+    $stmt = $conn->prepare("SELECT author_id, author_fullname FROM author");
+    $stmt->execute();
+    $authors = $stmt->fetchAll();
+
+?>
     
     <!-- JS TextEditor -->
     <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
@@ -52,38 +62,24 @@
                         <select class="custom-select" name="arCategory" id="arCategory" required>
                             <option disabled>-- Select Category --</option>
 
-                            <?php
-                                $stmt = $conn->prepare("SELECT category_id, category_name FROM category");
-                                $stmt->execute();
-                                $data = $stmt->fetchAll();
-                                foreach ($data as $row) :
-                            ?>
-                                <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
-                            <?php  
-                                endforeach;
-                            ?>
+                            <?php foreach ($categories as $category) : ?>
+                                <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
+                            <?php endforeach; ?>
 
                         </select>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="arAutheur">Autheur</label>
-                        <select class="custom-select" name="arAutheur" id="arAutheur" required>
-                            <option disabled>-- Select Autheur --</option>
+                        <label for="arAuthor">Author</label>
+                        <select class="custom-select" name="arAuthor" id="arAuthor" required>
+                            <option disabled>-- Select Author --</option>
 
-                            <?php
-                                $stmt = $conn->prepare("SELECT autheur_id, autheur_fullname FROM autheur");
-                                $stmt->execute();
-                                $data = $stmt->fetchAll();
-                                foreach ($data as $row) :
-                            ?>
+                            <?php foreach ($authors as $author) : ?>
 
-                                <option value="<?= $row['autheur_id'] ?>"><?= $row['autheur_fullname'] ?></option>
+                                <option value="<?= $author['author_id'] ?>"><?= $author['author_fullname'] ?></option>
                             
-                            <?php  
-                                endforeach;
-                            ?>
+                            <?php endforeach; ?>
 
 
                         </select>

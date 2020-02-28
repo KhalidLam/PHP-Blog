@@ -1,6 +1,10 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
-
+<?php 
+    $stmt = $conn->prepare("SELECT * FROM article, author, category WHERE id_categorie = category_id AND author_id = id_author ORDER BY article_id DESC");
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+?>
     <title>Add Article</title>
 </head>
 
@@ -30,16 +34,13 @@
                         <th scope='col'>Image</th>
                         <th scope='col'>Created Time</th>
                         <th scope='col'>Category</th>
-                        <th scope='col'>Autheur</th>
+                        <th scope='col'>Author</th>
                         <th scope='col' colspan="3">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
-                    $stmt = $conn->prepare("SELECT * FROM article, autheur, category WHERE id_categorie = category_id AND autheur_id = id_autheur ORDER BY article_id DESC");
-                    $stmt->execute();
-                    $data = $stmt->fetchAll();
                     foreach ($data as $row) :
                         echo "<tr>";
                     ?>
@@ -50,7 +51,7 @@
                         <td><img src="img/article/<?= $row['article_image'] ?>" style="width: 100px; height: auto;"></td>
                         <td><?= $row['article_created_time'] ?></td>
                         <td><?= $row['category_name'] ?></td>
-                        <td><?= $row['autheur_fullname'] ?></td>
+                        <td><?= $row['author_fullname'] ?></td>
 
                         <td>
                             <a class="btn btn-info" href="single_article.php?id=<?= $row['article_id'] ?> ">

@@ -13,8 +13,8 @@
             case "category":
                 delete($conn, $type, $id, "allCategories.php");
                 break;
-            case "autheur":
-                delete($conn, $type, $id, "autheur.php");
+            case "author":
+                delete($conn, $type, $id, "author.php");
                 break;
             default:
                 break;

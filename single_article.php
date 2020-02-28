@@ -2,21 +2,21 @@
 
 <?php
     $article_id = $_GET['id'];
-    
-    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `autheur` ON `article`.id_autheur = `autheur`.autheur_id  WHERE `article_id` = ?");
+
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `author` ON `article`.id_author = `author`.author_id  WHERE `article_id` = ?");
     $stmt->execute([$article_id]);
     $data = $stmt->fetchAll();
-    
+
     $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN `comment` WHERE `article`.`article_id`= `comment`.`id_article` AND `article`.`article_id` = ?");
     $stmt->execute([$article_id]);
-    $commentQuery = $stmt->fetchAll();
+    $comments = $stmt->fetchAll();
 ?>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/single_article.css">
 
-    <title>Single Article</title>
-    
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/single_article.css">
+
+<title>Single Article</title>
+
 </head>
 
 <body>
@@ -59,25 +59,25 @@
 
                             </div>
 
-                            <!-- Autheur Info -->
+                            <!-- author Info -->
                             <div class="post-footer d-flex my-4 py-3 border border-muted">
 
-                                <img class="profile-thumbnail rounded-circle" src="img/avatar/<?= $row['autheur_avatar'] ?>" alt="test avatar image" style="width: 150px;height: 150px;">
+                                <img class="profile-thumbnail rounded-circle" src="img/avatar/<?= $row['author_avatar'] ?>" alt="test avatar image" style="width: 150px;height: 150px;">
                                 <div class="d-flex flex-column justify-content-between">
-                                    <h2 class="font-italic"><?= $row['autheur_fullname'] ?></h2>
-                                    <p class="text-muted mb-1"><?= $row['autheur_desc'] ?></p>
+                                    <h2 class="font-italic"><?= $row['author_fullname'] ?></h2>
+                                    <p class="text-muted mb-1"><?= $row['author_desc'] ?></p>
                                     <div class="social_media ">
-                                        <a href="" class="mr-3"><i class="fa fa-twitter"></i><span class="px-1"><?= $row['autheur_twitter'] ?></span></a>
-                                        <a href="" class="mr-3"><i class="fa fa-github"></i><span class="px-1"><?= $row['autheur_github'] ?></span></a>
-                                        <a href="" class="mr-3"><i class="fa fa-linkedin-square"></i><span class="px-1"><?= $row['autheur_link'] ?></span></a>
+                                        <a href="" class="mr-3"><i class="fa fa-twitter"></i><span class="px-1"><?= $row['author_twitter'] ?></span></a>
+                                        <a href="" class="mr-3"><i class="fa fa-github"></i><span class="px-1"><?= $row['author_github'] ?></span></a>
+                                        <a href="" class="mr-3"><i class="fa fa-linkedin-square"></i><span class="px-1"><?= $row['author_link'] ?></span></a>
                                     </div>
                                 </div>
                             </div>
 
-                        <?php endforeach; ?>
-
                         </div>
 
+                    <?php endforeach; ?>
+                        
                 </div>
 
                 <!-- Sidebar -->
@@ -103,36 +103,34 @@
                         </form>
 
                     </div>
-                    
+
                     <div class="comments">
                         <h2 class="text-center text-muted py-3">Comments</h2>
-                        
-                        <?php
-                        foreach ($commentQuery as $comment) :
-                        ?>
 
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2 text-center">
-                                        <img src="img/avatar/<?= $comment['comment_avatar'] ?>" class="img img-rounded img-fluid w-50" />
+                        <?php foreach ($comments as $comment) : ?>
+
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2 text-center">
+                                            <img src="img/avatar/<?= $comment['comment_avatar'] ?>" class="img img-rounded img-fluid w-50" />
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                <a class="float-left" href="#"><strong><?= "User-" . $comment['comment_username'] ?></strong></a>
+                                                <span class="float-right px-2 text-muted"><?= $comment['comment_date'] ?></span>
+                                            </p>
+                                            <div class="clearfix"></div>
+                                            <p class="text-secondary mt-2"><?= $comment['comment_content'] ?></p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-10">
-                                        <p>
-                                            <a class="float-left" href="#"><strong><?= "User-".$comment['comment_username'] ?></strong></a>
-                                            <span class="float-right px-2 text-muted"><?= $comment['comment_date'] ?></span>
-                                        </p>
-                                        <div class="clearfix"></div>
-                                        <p class="text-secondary mt-2"><?= $comment['comment_content'] ?></p>
-                                    </div>
+
                                 </div>
-
                             </div>
-                        </div>
 
                         <?php endforeach; ?>
                     </div>
-                
+
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
   
-    <title>Add Autheur</title>
+    <title>Add Author</title>
 </head>
 
 <body>
@@ -11,7 +11,7 @@
         <?php include "assest/header.php" ?>
 
         <div class="jumbotron text-center ">
-            <h1 class="display-3 font-weight-normal text-muted">Add Autheur</h1>
+            <h1 class="display-3 font-weight-normal text-muted">Add Author</h1>
         </div>
 
     </header>
@@ -23,7 +23,7 @@
 
             <div class="col-lg-8 mb-4">
                 <!-- Form -->
-                <form action="assest/insert.php?type=autheur" method="POST" enctype="multipart/form-data">
+                <form action="assest/insert.php?type=author" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="authName">Full Name</label>
