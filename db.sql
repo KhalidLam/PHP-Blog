@@ -35,14 +35,14 @@ CREATE TABLE `article` (
   `article_image` varchar(255) NOT NULL,
   `article_created_time` datetime NOT NULL,
   `id_categorie` int(11) NOT NULL,
-  `id_autheur` int(11) NOT NULL
+  `id_author` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`article_id`, `article_title`, `article_content`, `article_image`, `article_created_time`, `id_categorie`, `id_autheur`) VALUES
+INSERT INTO `article` (`article_id`, `article_title`, `article_content`, `article_image`, `article_created_time`, `id_categorie`, `id_author`) VALUES
 (6, 'Learn git concepts, ,not commands', '<p>An interactive git tutorial meant to teach you how git works, not just which commands to execute.</p>\r\n\r\n<h1>Overview</h1>\r\n\r\n<p>In the picture below you see four boxes. One of them stands alone, while the other three are grouped together in what I&#39;ll call your Development Environment.</p>\r\n\r\n<p>We&#39;ll start with the one that&#39;s on it&#39;s own though. The Remote Repository is where you send your changes when you want to share them with other people, and where you get their changes from. If you&#39;ve used other version control systems there&#39;s nothing interesting about that.</p>\r\n\r\n<p>The Development Environment is what you have on your local machine. The three parts of it are your Working Directory, the Staging Area and the Local Repository. We&#39;ll learn more about those as we start using git.</p>\r\n\r\n<p>Choose a place in which you want to put your Development Environment. Just go to your home folder, or where ever you like to put your projects. You don&#39;t need to create a new folder for your Dev Environment though.</p>\r\n\r\n<h1>Getting a Remote Repository</h1>\r\n\r\n<p>Now we want to grab a Remote Repository and put what&#39;s in it onto your machine.</p>\r\n\r\n<p>Now that you have a copy of my Remote Repository of your own, it&#39;s time to get that onto your machine.</p>\r\n', 'git.png', '2020-02-14 10:28:00', 1, 2),
 (17, '10 Data Science and Machine Learning Courses for Beginners ', '<p>Data Science, Machine Learning, Deep Learning, and Artificial intelligence are really hot at this moment and offering a lucrative career to programmers with high pay and exciting work. It&#39;s a great opportunity for programmers who are willing to learn these new skills and upgrade themselves and want to solve some of the most interesting real-world problems. It&#39;s also important from the job perspective because Robots and Bots are getting smarter day by day, thanks to these technologies and most likely will take over some of the jobs which many programmers do today. Hence, it&#39;s important for software engineers and developers to upgrade themselves with these skills. Programmers with these skills are also commanding significantly higher salaries as data science is revolutionizing the world around us.</p>\r\n', 'datascience.jpg', '2020-02-14 11:52:24', 4, 1),
 (26, 'Anybody wants to start/practice contributing to OSS projects?? ', '<h1>Introduction</h1>\r\n\r\n<p>I made this super simple ruby gem called <a href=\"https://github.com/K-Sato1995/spell_generator\">spell_generator</a> and looking for people who want to start/practice contributing to OSS projects.</p>\r\n\r\n<h1>Why?</h1>\r\n\r\n<p>Making a PR to an OSS project can be intimidating if you don&#39;t know how to actually do to it. But if you know the process of making a PR and have already done it before, it can be very simple and fun.<br />\r\nI want to help people who have been thinking about contributing to OSS projects but have been too scared to do it.<br />\r\nEspecially if you are a self-taught programmer or new graduate who is looking for some experience to put on your resume, contributions to OSS projects would be great to have as your experience.</p>\r\n\r\n<p><strong>I want to help you to take the first step of your OSS journey.</strong></p>\r\n\r\n<h1>What I want you to do</h1>\r\n\r\n<p>As I mentioned above, this gem I created is very simple.<br />\r\nAll it does is creating a random spell based on adjectives and verbs that are stored in different arrays respectively.</p>\r\n\r\n<p>I want you to add one or more adjectives or verbs to the corresponding array.</p>\r\n\r\n<p><a href=\"https://github.com/K-Sato1995/spell_generator/issues/1\">https://github.com/K-Sato1995/spell_generator/issues/1</a></p>\r\n', '6.jpg', '2020-02-14 15:05:13', 2, 2),
@@ -53,25 +53,25 @@ INSERT INTO `article` (`article_id`, `article_title`, `article_content`, `articl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autheur`
+-- Table structure for table `author`
 --
 
-CREATE TABLE `autheur` (
-  `autheur_id` int(11) NOT NULL,
-  `autheur_fullname` varchar(100) NOT NULL,
-  `autheur_desc` varchar(255) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus in ullam eum corrupti reiciendis.',
-  `autheur_email` varchar(100) NOT NULL,
-  `autheur_twitter` varchar(100) NOT NULL DEFAULT 'loujaybee',
-  `autheur_github` varchar(100) NOT NULL DEFAULT 'loujaybee',
-  `autheur_link` varchar(100) NOT NULL DEFAULT 'loujaybee',
-  `autheur_avatar` varchar(255) NOT NULL
+CREATE TABLE `author` (
+  `author_id` int(11) NOT NULL,
+  `author_fullname` varchar(100) NOT NULL,
+  `author_desc` varchar(255) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus in ullam eum corrupti reiciendis.',
+  `author_email` varchar(100) NOT NULL,
+  `author_twitter` varchar(100) NOT NULL DEFAULT 'loujaybee',
+  `author_github` varchar(100) NOT NULL DEFAULT 'loujaybee',
+  `author_link` varchar(100) NOT NULL DEFAULT 'loujaybee',
+  `author_avatar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `autheur`
+-- Dumping data for table `author`
 --
 
-INSERT INTO `autheur` (`autheur_id`, `autheur_fullname`, `autheur_desc`, `autheur_email`, `autheur_twitter`, `autheur_github`, `autheur_link`, `autheur_avatar`) VALUES
+INSERT INTO `author` (`author_id`, `author_fullname`, `author_desc`, `author_email`, `author_twitter`, `author_github`, `author_link`, `author_avatar`) VALUES
 (1, 'Quincy Larson', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus in ullam eum corrupti reiciendis.', 'larson.Quic@gmail.com', 'loujaybee', 'loujaybee', 'loujaybee', 'avatar-2.png'),
 (2, 'Samantha Ming ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus in ullam eum corrupti reiciendis.', 'samantha_ming@gmail.com', 'loujaybee', 'loujaybee', 'loujaybee', 'avatar-1.png'),
 (8, ' Bartosz Pietrucha ', 'Fullstack engineer, https://angular-academy.com founder, speaker, trainer, software consultant. I can help you with Angular and reactive architecture. ', 'bartosz-pietrucha@gmail.com', 'pietrucha', '', '', 'cc5d5f49-30e6-41be-9cc4-82f44c2cf1d9.webp');
@@ -141,13 +141,13 @@ INSERT INTO `comment` (`comment_id`, `comment_username`, `comment_avatar`, `comm
 ALTER TABLE `article`
   ADD PRIMARY KEY (`article_id`),
   ADD KEY `article_category` (`id_categorie`),
-  ADD KEY `article_autheur` (`id_autheur`);
+  ADD KEY `article_author` (`id_author`);
 
 --
--- Indexes for table `autheur`
+-- Indexes for table `author`
 --
-ALTER TABLE `autheur`
-  ADD PRIMARY KEY (`autheur_id`);
+ALTER TABLE `author`
+  ADD PRIMARY KEY (`author_id`);
 
 --
 -- Indexes for table `category`
@@ -173,10 +173,10 @@ ALTER TABLE `article`
   MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `autheur`
+-- AUTO_INCREMENT for table `author`
 --
-ALTER TABLE `autheur`
-  MODIFY `autheur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `author`
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -198,7 +198,7 @@ ALTER TABLE `comment`
 -- Constraints for table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_autheur` FOREIGN KEY (`id_autheur`) REFERENCES `autheur` (`autheur_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `article_author` FOREIGN KEY (`id_author`) REFERENCES `author` (`author_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `article_category` FOREIGN KEY (`id_categorie`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
