@@ -1,26 +1,45 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
 <?php
-    $stmt = $conn->prepare("SELECT * FROM `article` ORDER BY `article`.`article_created_time` DESC");
-    $stmt->execute();
-    $articles = $stmt->fetchAll();
+
+// Get Latest articles
+$stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN category ON id_categorie=category_id ORDER BY `article_created_time` DESC  LIMIT 9");
+$stmt->execute();
+$articles = $stmt->fetchAll();
+
+// Get Categories
+$stmt = $conn->prepare("SELECT *,COUNT(*) as article_count FROM `article` INNER JOIN category ON id_categorie=category_id GROUP BY id_categorie");
+$stmt->execute();
+$categories = $stmt->fetchAll();
+
+// Get Most Read Articles
+$stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN category ON id_categorie=category_id order by RAND() LIMIT 4");
+$stmt->execute();
+$most_read_articles = $stmt->fetchAll();
+
 ?>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link href="css/home.css" rel="stylesheet"> 
-    
-    <title>Home</title>
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
+
+<!-- Custom CSS -->
+<!-- <link href="css/home.css" rel="stylesheet"> -->
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+
+<title>Home</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <header class="blog-header">
+    <!-- Header -->
+    <?php include "assest/header.php" ?>
+    <!-- </Header> -->
 
-        <?php include "assest/header.php" ?>
+    <!-- Main -->
+    <main class="main">
 
+        <!-- Jumbotron -->
         <div class="jumbotron text-center p-0 mb-0">
             <div class="p-0">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -45,54 +64,231 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div><!-- /Jumbotron -->
 
-    </header><!-- Header -->
-    
+        <!-- Latest Articles -->
+        <div class="section section-grey">
 
-
-    <main role="main" class="">
-
-        <div class="album py-5 bg-light">
+            <!-- container -->
             <div class="container">
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title">
+                            <h2>Latest Articles</h2>
+                        </div>
+                    </div>
 
-                    <?php
-                        foreach ($articles as $article) :
-                    ?>
-                        <div class="col mb-4 stretch">
-                            <div class="card shadow-sm w-100">
-                                <img class="card-img-top" src="img/article/<?= $article['article_image'] ?>" alt="...">
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    <h5 class="card-title">
-                                        <a href="single_article.php?id=<?= $article['article_id']?>" class="text-dark"> <?= $article['article_title'] ?> </a>
-                                    </h5>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <a href="single_article.php?id=<?= $article['article_id']?>" class="btn btn-sm btn-outline-secondary">View</a>
-                                            <a href="update_article.php?id=<?= $article['article_id']?>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                        </div>
-                                        <small class="text-muted"><?= $article['article_created_time'] ?></small>
+                    <?php foreach ($articles as $article) : ?>
+
+                        <!-- post -->
+                        <div class="col-md-4">
+                            <div class="post">
+                                <a class="post-img" href="single_article.php?id=<?= $article['article_id'] ?>">
+                                    <img src="img/article/<?= $article['article_image'] ?>" alt="">
+                                </a>
+                                <di class="post-body">
+
+                                    <div class="post-meta">
+                                        <a class="post-category cat-1" href="articleOfCategory.php?catID=<?= $article['category_id'] ?>" style="background-color:<?= $article['category_color'] ?>"><?= $article['category_name'] ?></a>
+                                        <span class="post-date">
+                                            <?= date_format(date_create($article['article_created_time']), "F d, Y ") ?>
+                                        </span>
                                     </div>
-                                </div>
+
+                                    <h3 class="post-title"><a href="single_article.php?id=<?= $article['article_id'] ?>"><?= $article['article_title'] ?></a></h3>
+
+                                </di>
                             </div>
                         </div>
-                    
-                    <?php 
-                        endforeach;
-                    ?>
+                        <!-- /post -->
 
+                    <?php endforeach;  ?>
+
+                    <div class="clearfix visible-md visible-lg"></div>
                 </div>
-            </div>
-        </div>
+                <!-- /row -->
 
-    </main><!-- /.container -->
+            </div>
+            <!-- /container -->
+        </div><!-- /Latest Articles -->
+
+        <!-- Most Read -->
+        <div class="section section-grey">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="section-title">
+                                    <h2>Most Read</h2>
+                                </div>
+                            </div>
+
+                            <?php foreach ($most_read_articles as $article) : ?>
+
+                                <!-- post -->
+                                <div class="col-md-12">
+                                    <div class="post post-row">
+                                        <a class="post-img" href="single_article.php?id=<?= $article['article_id'] ?>">
+                                            <img src="img/article/<?= $article['article_image'] ?>" alt="">
+                                        </a>
+                                        <div class="post-body">
+                                            <div class="post-meta">
+                                                <a href="articleOfCategory.php?catID=<?= $article['category_id'] ?>" class="post-category" style="background-color:<?= $article['category_color'] ?>">
+                                                    <?= $article['category_name'] ?>
+                                                </a>
+                                                <span class="post-date">
+                                                    <?= date_format(date_create($article['article_created_time']), "F d, Y ") ?>
+                                                </span>
+                                            </div>
+
+                                            <h3 class="post-title"><a href="single_article.php?id=<?= $article['article_id'] ?>"><?= $article['article_title'] ?></a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /post -->
+
+                            <?php endforeach;  ?>
+
+                            <!-- post -->
+                            <!-- <div class="col-md-12">
+                                <div class="post post-row">
+                                    <a class="post-img" href="blog-post.html"><img src="./img/post-4.jpg" alt=""></a>
+                                    <div class="post-body">
+                                        <div class="post-meta">
+                                            <a class="post-category cat-2" href="category.html">JavaScript</a>
+                                            <span class="post-date">March 27, 2018</span>
+                                        </div>
+                                        <h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- /post -->
+
+                            <!-- post -->
+                            <!-- <div class="col-md-12">
+                                <div class="post post-row">
+                                    <a class="post-img" href="blog-post.html"><img src="./img/post-6.jpg" alt=""></a>
+                                    <div class="post-body">
+                                        <div class="post-meta">
+                                            <a class="post-category cat-2" href="category.html">JavaScript</a>
+                                            <span class="post-date">March 27, 2018</span>
+                                        </div>
+                                        <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- /post -->
+
+                            <!-- post -->
+                            <!-- <div class="col-md-12">
+                                <div class="post post-row">
+                                    <a class="post-img" href="blog-post.html"><img src="./img/post-1.jpg" alt=""></a>
+                                    <div class="post-body">
+                                        <div class="post-meta">
+                                            <a class="post-category cat-4" href="category.html">Css</a>
+                                            <span class="post-date">March 27, 2018</span>
+                                        </div>
+                                        <h3 class="post-title"><a href="blog-post.html">CSS Float: A Tutorial</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- /post -->
+
+                            <!-- post -->
+                            <!-- <div class="col-md-12">
+                                <div class="post post-row">
+                                    <a class="post-img" href="blog-post.html"><img src="./img/post-2.jpg" alt=""></a>
+                                    <div class="post-body">
+                                        <div class="post-meta">
+                                            <a class="post-category cat-3" href="category.html">Jquery</a>
+                                            <span class="post-date">March 27, 2018</span>
+                                        </div>
+                                        <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use JQuery?</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- /post -->
+
+                            <!-- <div class="col-md-12">
+                                <div class="section-row">
+                                    <button class="primary-button center-block">Load More</button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <!-- catagories -->
+                        <div class="aside-widget">
+                            <div class="section-title">
+                                <h2>Categories</h2>
+                            </div>
+                            <div class="category-widget">
+
+                                <ul>
+                                    <!-- /category -->
+                                    <?php foreach ($categories as $category) : ?>
+                                        <li>
+                                            <a href="articleOfCategory.php?catID=<?= $category['category_id'] ?>"> <?= $category["category_name"] ?>
+                                                <span style="background-color: <?= $category["category_color"] ?>"> <?= $category["article_count"] ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                    <!-- /category -->
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
+                                    <li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
+                                    <li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
+                                    <li><a href="#" class="cat-3">CSS<span>35</span></a></li> -->
+                        <!-- /catagories -->
+
+                        <!-- tags -->
+                        <!-- <div class="aside-widget">
+                            <div class="tags-widget">
+                                <ul>
+                                    <li><a href="#">Chrome</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">Tutorial</a></li>
+                                    <li><a href="#">Backend</a></li>
+                                    <li><a href="#">JQuery</a></li>
+                                    <li><a href="#">Design</a></li>
+                                    <li><a href="#">Development</a></li>
+                                    <li><a href="#">JavaScript</a></li>
+                                    <li><a href="#">Website</a></li>
+                                </ul>
+                            </div>
+                        </div> -->
+                        <!-- /tags -->
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div><!-- /Most Read -->
+
+    </main><!-- </Main> -->
 
     <!-- Footer -->
     <?php include "assest/footer.php" ?>
+    <!-- </Footer> -->
 
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
