@@ -97,7 +97,7 @@ $comments = $stmt->fetchAll();
                 </div><!-- /Article -->
 
                 <!-- Aside -->
-                <div class="col ">
+                <div class="aside col-3">
                     <!-- Author Info -->
                     <div class="p-3 bg-white border  border-muted">
                         <div class="d-flex align-items-center">

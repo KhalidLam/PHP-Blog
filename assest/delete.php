@@ -11,7 +11,7 @@ if ($conn) {
             delete($conn, $type, $id, "article.php");
             break;
         case "category":
-            delete($conn, $type, $id, "allCategories.php");
+            delete($conn, $type, $id, "categories.php");
             break;
         case "author":
             delete($conn, $type, $id, "author.php");

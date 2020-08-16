@@ -63,7 +63,7 @@ $categories = $stmt->fetchAll();
                             <td><?= $category['category_id'] ?></td>
                             <td><?= $category['category_name'] ?></td>
                             <td>
-                                <img src="img/category/<?= $category['category_image'] ?>" style="width: 100px; height: auto;">
+                                <img src="img/category/<?= empty($category['category_image']) ? "no-image-available.png" : $category['category_image']; ?>" style="width: 100px; height: 60px;">
                             </td>
                             <td class="">
                                 <div style="width: 40px; height: 40px; border-radius: 100% ;background-color: <?= $category['category_color'] ?>"></div>

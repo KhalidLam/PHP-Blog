@@ -80,7 +80,7 @@ if ($conn) {
 
                 // Go to show.php
                 // header("refresh:1; url=../allCategories.php");
-                header("Location: ../allCategories.php", true, 301);
+                header("Location: ../categories.php", true, 301);
                 exit;
 
                 break;
