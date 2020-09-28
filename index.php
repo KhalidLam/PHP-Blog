@@ -25,7 +25,18 @@ $most_read_articles = $stmt->fetchAll();
 <!-- Custom CSS -->
 <!-- <link href="css/home.css" rel="stylesheet"> -->
 <link type="text/css" rel="stylesheet" href="css/style.css" />
-
+<style>
+    .bg-div {
+        background: linear-gradient(rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)), url("./img/slider/pexels-marc-mueller.jpg");
+        /* Full height */
+        height: 680px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 
 <title>Home</title>
 </head>
@@ -41,28 +52,15 @@ $most_read_articles = $stmt->fetchAll();
 
         <!-- Jumbotron -->
         <div class="jumbotron text-center p-0 mb-0">
-            <div class="p-0">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" style="height: 480px;width: 100%;">
-                        <div class="carousel-item active">
-                            <img src="img/slider/1.jpg" class="w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/slider/2.jpg" class="w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/slider/3.jpg" class="w-100" alt="...">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+            <div class="bg-div px-5 d-flex align-items-center">
+
+                <div class="text-left w-50">
+                    <h1 class="display-4 text-white">Welcome to Dev Culture!</h1>
+                    <h2 class="display-5 text-white">Discover Dev tutorial and articles that you can read completely for free!</h2>
+
                 </div>
+
+
             </div>
         </div><!-- /Jumbotron -->
 

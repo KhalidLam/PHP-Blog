@@ -1,26 +1,34 @@
 <!-- Include Head -->
 <?php include "assest/head.php"; ?>
 <?php
-$catID = $_GET["catID"];
 
-// $stmt = $conn->prepare("SELECT * FROM article WHERE id_categorie = ?");
-// $stmt->execute([$catID]);
-// $articles = $stmt->fetchAll();
+$catID = "";
 
 // Get All Categories
 $stmt = $conn->prepare("SELECT * FROM `category` ");
 $stmt->execute();
 $categories = $stmt->fetchAll();
 
-// Get Category Info
-$stmt = $conn->prepare("SELECT * FROM `category` WHERE category_id = ?");
-$stmt->execute([$catID]);
-$category = $stmt->fetch();
+if (isset($_GET["catID"])) {
 
-// Get Latest articles
-$stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN category ON id_categorie=category_id WHERE id_categorie = ?  ORDER BY `article_created_time` DESC ");
-$stmt->execute([$catID]);
-$articles = $stmt->fetchAll();
+    $catID = $_GET["catID"];
+
+    // Get Category Info
+    $stmt = $conn->prepare("SELECT * FROM `category` WHERE category_id = ?");
+    $stmt->execute([$catID]);
+    $category = $stmt->fetch();
+
+    // Get Latest articles
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN category ON id_categorie=category_id WHERE id_categorie = ?  ORDER BY `article_created_time` DESC ");
+    $stmt->execute([$catID]);
+    $articles = $stmt->fetchAll();
+} else {
+
+    $stmt = $conn->prepare("SELECT * FROM `article` INNER JOIN category ON id_categorie=category_id ORDER BY `article_created_time` DESC ");
+    $stmt->execute();
+    $articles = $stmt->fetchAll();
+}
+
 
 ?>
 
@@ -45,7 +53,7 @@ $articles = $stmt->fetchAll();
     <main class="main">
 
         <!-- Latest Articles -->
-        <div class="section jumbotron mb-0">
+        <div class="section jumbotron mb-0 h-100">
             <!-- container -->
             <div class="container">
 
@@ -53,8 +61,15 @@ $articles = $stmt->fetchAll();
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2><?= $category['category_name'] ?> Articles</h2>
+                            <h2><?= $catID == "" ? "" : $category['category_name'] ?> Articles</h2>
+
                             <ul class="list-inline mt-1 mb-4">
+                                <li class="list-inline-item">
+                                    <a href="articleOfCategory.php" class="text-muted">
+                                        All
+                                    </a>
+                                </li>
+
                                 <?php foreach ($categories as $category) : ?>
                                     <li class="list-inline-item">
                                         <a href="articleOfCategory.php?catID=<?= $category['category_id'] ?>" class="text-muted">
@@ -98,38 +113,6 @@ $articles = $stmt->fetchAll();
             </div>
             <!-- /container -->
         </div>
-
-        <!-- <div class="jumbotron mb-0">
-            <div class="container">
-
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-                    <?php
-                    foreach ($articles as $article) :
-                        ?>
-                        <div class="col mb-4 stretch">
-                            <div class="card shadow-sm">
-                                <img class="card-img-top" src="img/article/<?= $article['article_image'] ?>" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="single_article.php?id=<?= $article['article_id'] ?>" class="text-dark"> <?= $article['article_title'] ?> </a>
-                                    </h5>
-
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <a href="single_article.php?id=<?= $article['article_id'] ?>" class="btn btn-sm btn-outline-secondary">View</a>
-                                            <a href="update_article.php?id=<?= $article['article_id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                        </div>
-                                        <small class="text-muted"><?= $article['article_created_time'] ?></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php endforeach ?>
-
-                </div>
-            </div>
-        </div> -->
 
 
     </main><!-- </Main> -->

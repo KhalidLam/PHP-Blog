@@ -103,7 +103,6 @@ $data = $stmt->fetchAll();
         </div>
 
 
-                        
     </main>
 
     <!-- Footer -->
